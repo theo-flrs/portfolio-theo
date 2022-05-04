@@ -204,6 +204,14 @@ header {
     fill: none;
     stroke: $couleur-tertiaire;
     stroke-linecap: round;
+    transition: all 0.3s ease-in-out;
+  }
+
+  &:hover{
+    path{
+      stroke: $couleur-secondaire;
+      transition: all 0.3s ease-in-out;
+    }
   }
 }
 
@@ -248,6 +256,11 @@ nav {
   li {
     overflow: hidden;
     transition: transform 300ms ease-in-out 0s;
+
+    &:hover {
+      transform: translateX(50px);
+      transition: all 0.3s ease-in-out;
+    }
   }
 
   li + li {
@@ -263,11 +276,27 @@ nav {
     font-weight: 500;
     display: inline-block;
     line-height: 1;
-  }
 
-  li:hover {
-    transform: translateX(50px);
-    transition: all 0.3s ease-in-out;
+    &:hover::before {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+    &::before {
+      transform: scaleX(0);
+      transform-origin: bottom right;
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 60px !important;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      inset: 0 0 0 0;
+      background: $couleur-secondaire;
+      z-index: -1;
+      transition: transform 0.3s ease;
+    }
   }
 }
 

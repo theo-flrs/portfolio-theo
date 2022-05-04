@@ -2,12 +2,21 @@
   <div class="main">
     <div class="hero-section">
       <canvas id="canvas"></canvas>
-      <h1>Hello, i'm Théo </h1>
-      <span>Webdesigner & Webdevelopper</span>
+      <h1>Théo Florès</h1>
+      <span>Webdesigner / Webdevelopper</span>
     </div>
 
-    <div>
-      <h1>À propos</h1>
+    <div class="about-me-section">
+      <img
+        src="https://images.unsplash.com/photo-1651436897044-4429e40d2715?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80"
+        alt=""
+      />
+      <h1>À propos de moi</h1>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum veniam
+        ratione, ex ab laboriosam placeat ut odio sequi voluptatum, nostrum
+        rerum doloremque illo ducimus tenetur officia. Eveniet nulla modi alias?
+      </p>
     </div>
 
     <div v-if="posts">
@@ -75,7 +84,7 @@ export default {
     // const geometry = new THREE.BoxGeometry(3, 3, 3);
     // const geometry = new THREE.SphereGeometry(1.5, 30, 20,0,Math.PI * 2,0, Math.PI);
     // const geometry = new THREE.IcosahedronGeometry(3, 0);
-    const geometry = new THREE.DodecahedronGeometry(3, 1);
+    const geometry = new THREE.DodecahedronGeometry(5 * 0.5, 1);
     const fog = new THREE.Fog(0x000000);
     const material = new THREE.MeshStandardMaterial({
       color: 0x001d6e,
@@ -129,16 +138,73 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    font-family: $font-titre;
+    color: $couleur-tertiaire;
+    font-size: 100px;
+    font-weight: 900;
+
+    &:hover::before {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+    &::before {
+      transform: scaleX(0);
+      transform-origin: bottom right;
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      inset: 0 0 0 0;
+      background: $couleur-principale;
+      z-index: -1;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  span {
+    position: absolute;
+    z-index: 1;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    text-align: center;
     font-family: $font-paragraphe;
     color: $couleur-tertiaire;
-    font-size: 80px;
-    font-weight: 700;
-
-
+    font-size: 30px;
+    font-weight: 500;
   }
 }
 
 #canvas {
   width: 100% !important;
+}
+
+.about-me-section {
+  display: flex;
+  flex-direction: column;
+  padding: 80px;
+
+  h1 {
+    font-family: $font-titre;
+    font-size: 50px;
+    color: $couleur-tertiaire;
+  }
+
+  p {
+    font-family: $font-paragraphe;
+    font-size: 20px;
+    color: $couleur-tertiaire;
+    padding: 20px 0px;
+  }
+
+  img{
+    width: 300px;
+    height: 500px;
+    object-fit: cover;
+  }
 }
 </style>
