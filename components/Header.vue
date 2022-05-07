@@ -2,10 +2,10 @@
   <div>
     <header>
       <div class="header-row">
-        <div class="brand-logo">
+        <div class="brand-logo" @click="FermerMenu()">
           <nuxt-link to="/">Théo Florès</nuxt-link>
         </div>
-        <button class="menu-toggle" id="menuToggle">
+        <button class="menu-toggle" id="menuToggle" @click="ChangeMenuColor()">
           <svg viewBox="0 0 12 10" class="hamburger" height="40px" width="40px">
             <path d="M10,2 L2,2" class="bar-1"></path>
             <path d="M2,5 L10,5" class="bar-2"></path>
@@ -142,6 +142,10 @@ export default {
     FermerMenu: function () {
       document.getElementById("menuToggle").click();
     },
+
+    ChangeMenuColor: function () {
+      document.querySelector(".menu-toggle").classList.toggle("color-white");
+    },
   },
 };
 </script>
@@ -202,13 +206,13 @@ header {
 .hamburger {
   path {
     fill: none;
-    stroke: $couleur-tertiaire;
+    stroke: $couleur-secondaire;
     stroke-linecap: round;
     transition: all 0.3s ease-in-out;
   }
 
-  &:hover{
-    path{
+  &:hover {
+    path {
       stroke: $couleur-secondaire;
       transition: all 0.3s ease-in-out;
     }
@@ -240,7 +244,7 @@ header {
   span {
     height: 33.334%;
     width: 100%;
-    background: $couleur-principale;
+    background: $couleur-secondaire;
     display: block;
   }
 }
@@ -269,11 +273,11 @@ nav {
 
   li a {
     font-size: 90px;
-    font-family: $font-paragraphe;
+    font-family: $font-titre;
     color: $couleur-tertiaire;
     text-decoration: none;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 600;
     display: inline-block;
     line-height: 1;
 
@@ -293,7 +297,7 @@ nav {
       bottom: 0;
       left: 0;
       inset: 0 0 0 0;
-      background: $couleur-secondaire;
+      background: $couleur-principale;
       z-index: -1;
       transition: transform 0.3s ease;
     }
@@ -310,6 +314,7 @@ nav {
   display: flex;
   justify-content: space-between;
   padding: 40px 60px;
+  color: $couleur-tertiaire;
 }
 .social-links {
   list-style-type: none;

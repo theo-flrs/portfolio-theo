@@ -11,12 +11,15 @@
         src="https://images.unsplash.com/photo-1651436897044-4429e40d2715?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80"
         alt=""
       />
-      <h1>À propos de moi</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum veniam
-        ratione, ex ab laboriosam placeat ut odio sequi voluptatum, nostrum
-        rerum doloremque illo ducimus tenetur officia. Eveniet nulla modi alias?
-      </p>
+      <div class="content-about-me">
+        <h1>À propos de moi</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum
+          veniam ratione, ex ab laboriosam placeat ut odio sequi voluptatum,
+          nostrum rerum doloremque illo ducimus tenetur officia. Eveniet nulla
+          modi alias?
+        </p>
+      </div>
     </div>
 
     <div v-if="posts">
@@ -63,7 +66,7 @@ export default {
   mounted() {
     // CODE THREE JS ----------------------------
     var scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xffffff);
+    scene.background = new THREE.Color(0xfaf3e0);
     var camera = new THREE.PerspectiveCamera(
       75,
       window.innerWidth / window.innerHeight,
@@ -87,8 +90,8 @@ export default {
     const geometry = new THREE.DodecahedronGeometry(5 * 0.5, 1);
     const fog = new THREE.Fog(0x000000);
     const material = new THREE.MeshStandardMaterial({
-      color: 0x001d6e,
-      emissive: 0x0f0f0f,
+      color: 0xf0f0f0,
+      emissive: 0x1e212d,
       roughness: 1,
       wireframe: true,
     });
@@ -139,9 +142,10 @@ export default {
     transform: translate(-50%, -50%);
     text-align: center;
     font-family: $font-titre;
-    color: $couleur-tertiaire;
-    font-size: 100px;
-    font-weight: 900;
+    color: $couleur-secondaire;
+    font-size: 110px;
+    font-weight: 700;
+    transition: all 0.35s ease-in-out;
 
     &:hover::before {
       transform: scaleX(1);
@@ -159,21 +163,25 @@ export default {
       bottom: 0;
       left: 0;
       inset: 0 0 0 0;
-      background: $couleur-principale;
+      background: $couleur-tertiaire;
       z-index: -1;
       transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      color: $couleur-blanc;
     }
   }
 
   span {
     position: absolute;
     z-index: 1;
-    top: 55%;
+    top: 56%;
     left: 50%;
     transform: translate(-50%, 50%);
     text-align: center;
     font-family: $font-paragraphe;
-    color: $couleur-tertiaire;
+    color: $couleur-secondaire;
     font-size: 30px;
     font-weight: 500;
   }
@@ -181,30 +189,41 @@ export default {
 
 #canvas {
   width: 100% !important;
+  height: 100vh !important;
 }
 
 .about-me-section {
   display: flex;
-  flex-direction: column;
-  padding: 80px;
+  flex-direction: row;
+  padding: 2rem;
+  // flex-wrap: wrap;
 
-  h1 {
-    font-family: $font-titre;
-    font-size: 50px;
-    color: $couleur-tertiaire;
-  }
-
-  p {
-    font-family: $font-paragraphe;
-    font-size: 20px;
-    color: $couleur-tertiaire;
-    padding: 20px 0px;
-  }
-
-  img{
-    width: 300px;
+  img {
+    width: 40vw;
     height: 500px;
     object-fit: cover;
+    flex-shrink: 0;
+    object-position: bottom center;
+  }
+
+  .content-about-me {
+    display: flex;
+    flex-direction: column;
+    padding: 5rem;
+    align-self: center;
+
+    h1 {
+      font-family: $font-titre;
+      font-size: 50px;
+      color: $couleur-secondaire;
+    }
+
+    p {
+      font-family: $font-paragraphe;
+      font-size: 20px;
+      color: $couleur-quaternaire;
+      padding: 20px 0px;
+    }
   }
 }
 </style>
