@@ -20,7 +20,7 @@ export default {
 .color-white {
   .hamburger {
     path {
-      stroke: white !important;
+      stroke: $couleur-tertiaire !important;
     }
   }
 }

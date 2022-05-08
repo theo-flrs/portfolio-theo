@@ -2,23 +2,35 @@
   <div class="main">
     <div class="hero-section">
       <canvas id="canvas"></canvas>
-      <h1>Théo Florès</h1>
+      <h1>Théo <b>Florès</b></h1>
       <span>Webdesigner / Webdevelopper</span>
     </div>
 
     <div class="about-me-section">
-      <img
-        src="https://images.unsplash.com/photo-1651436897044-4429e40d2715?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80"
-        alt=""
-      />
-      <div class="content-about-me">
-        <h1>À propos de moi</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum
-          veniam ratione, ex ab laboriosam placeat ut odio sequi voluptatum,
-          nostrum rerum doloremque illo ducimus tenetur officia. Eveniet nulla
-          modi alias?
-        </p>
+      <div class="outter hero-video">
+        <div class="video-container">
+          <video
+            autoplay
+            loop
+            muted
+            poster="https://backend.theo-flores.fr/wp-content/uploads/2022/05/abstract_background.png"
+          >
+            <source
+              src="https://backend.theo-flores.fr/wp-content/uploads/2022/05/abtract_background_theo_flores.mp4"
+              type="video/mp4"
+            />
+          </video>
+          <div class="callout">
+            <h1>À propos de moi</h1>
+            <div class="desc">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              Excepturi itaque nesciunt sapiente, nihil illum eaque aliquid ut
+              vero hic eius optio iure, cumque molestias totam deleniti error
+              quisquam repudiandae libero?
+            </div>
+            <a class="button" href="/collections/all">Découvrir mes projets</a>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -66,7 +78,7 @@ export default {
   mounted() {
     // CODE THREE JS ----------------------------
     var scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xfaf3e0);
+    scene.background = new THREE.Color(0x1b1717);
     var camera = new THREE.PerspectiveCamera(
       75,
       window.innerWidth / window.innerHeight,
@@ -91,7 +103,7 @@ export default {
     const fog = new THREE.Fog(0x000000);
     const material = new THREE.MeshStandardMaterial({
       color: 0xf0f0f0,
-      emissive: 0x1e212d,
+      emissive: 0xce1212,
       roughness: 1,
       wireframe: true,
     });
@@ -142,34 +154,13 @@ export default {
     transform: translate(-50%, -50%);
     text-align: center;
     font-family: $font-titre;
-    color: $couleur-secondaire;
+    color: $couleur-principale;
     font-size: 110px;
     font-weight: 700;
     transition: all 0.35s ease-in-out;
 
-    &:hover::before {
-      transform: scaleX(1);
-      transform-origin: bottom left;
-    }
-
-    &::before {
-      transform: scaleX(0);
-      transform-origin: bottom right;
-      content: " ";
-      display: block;
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      inset: 0 0 0 0;
-      background: $couleur-tertiaire;
-      z-index: -1;
-      transition: transform 0.3s ease;
-    }
-
-    &:hover {
-      color: $couleur-blanc;
+    b {
+      color: $couleur-tertiaire;
     }
   }
 
@@ -181,7 +172,7 @@ export default {
     transform: translate(-50%, 50%);
     text-align: center;
     font-family: $font-paragraphe;
-    color: $couleur-secondaire;
+    color: $couleur-principale;
     font-size: 30px;
     font-weight: 500;
   }
@@ -194,35 +185,120 @@ export default {
 
 .about-me-section {
   display: flex;
-  flex-direction: row;
-  padding: 2rem;
-  // flex-wrap: wrap;
+  justify-content: center;
+  padding: 60px;
+  background-color: $couleur-secondaire;
 
-  img {
-    width: 40vw;
-    height: 500px;
-    object-fit: cover;
-    flex-shrink: 0;
-    object-position: bottom center;
-  }
-
-  .content-about-me {
+  .outter.hero-video {
+    width: 95%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    padding: 5rem;
-    align-self: center;
+    justify-content: center;
+    align-items: center;
+    @media (max-width: 767px) {
+      height: 325px;
+    }
+
+    outline: 2px solid $couleur-principale;
+    outline-offset: 15px;
+  }
+
+  .hero-video {
+    .video-container {
+      width: 100%;
+      height: 550px;
+      position: relative;
+      overflow: hidden;
+      @media (max-width: 767px) {
+        height: 325px;
+      }
+    }
+
+    video {
+      object-fit: cover; // Set the magic
+      position: absolute;
+      width: 100%;
+      height: 550px;
+      top: 0;
+      left: 0;
+      @media (max-width: 767px) {
+        height: 325px;
+      }
+    }
+
+    .video-container:after {
+      content: "";
+      display: block;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: rgba(black, 0.2);
+      z-index: 1;
+    }
+
+    .callout {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100%;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      width: 50%;
+      margin: auto;
+      @media (max-width: 767px) {
+        width: 90%;
+      }
+    }
 
     h1 {
       font-family: $font-titre;
-      font-size: 50px;
-      color: $couleur-secondaire;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin: 0 0 1rem;
+      padding: 0;
+      line-height: 1;
+      color: $couleur-principale;
+      @media (max-width: 767px) {
+        font-size: 32px;
+      }
+      @media (min-width: 768px) {
+        font-size: 52px;
+      }
     }
 
-    p {
+    .desc {
+      color: $couleur-principale;
+      font-weight: 400;
+      font-size: 18px;
       font-family: $font-paragraphe;
-      font-size: 20px;
+    }
+
+    .button {
+      font-family: $font-paragraphe;
+      text-transform: uppercase;
+      background-color: transparent;
+      border-radius: 0px;
+      margin-top: 20px;
+      background-color: $couleur-principale;
+      padding: 15px 30px;
+      border-radius: 0px;
       color: $couleur-quaternaire;
-      padding: 20px 0px;
+      text-decoration: none;
+      font-weight: bold;
+      @media (max-width: 767px) {
+        padding: 10px 20px;
+      }
+    }
+    .button:hover {
+      cursor: pointer;
+      background-color:$couleur-quaternaire;
+      color: $couleur-principale;
     }
   }
 }

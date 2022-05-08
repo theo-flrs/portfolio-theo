@@ -6,7 +6,7 @@
           <nuxt-link to="/">Théo Florès</nuxt-link>
         </div>
         <button class="menu-toggle" id="menuToggle" @click="ChangeMenuColor()">
-          <svg viewBox="0 0 12 10" class="hamburger" height="40px" width="40px">
+          <svg viewBox="0 0 12 10" class="hamburger" height="45px" width="45px">
             <path d="M10,2 L2,2" class="bar-1"></path>
             <path d="M2,5 L10,5" class="bar-2"></path>
             <path d="M10,8 L2,8" class="bar-3"></path>
@@ -204,19 +204,24 @@ header {
 }
 
 .hamburger {
+  background-color: $couleur-secondaire;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 4px 4px 30px rgba(0, 0, 0, 0.2);
+
   path {
     fill: none;
-    stroke: $couleur-secondaire;
+    stroke: $couleur-principale;
     stroke-linecap: round;
     transition: all 0.3s ease-in-out;
   }
 
-  &:hover {
-    path {
-      stroke: $couleur-secondaire;
-      transition: all 0.3s ease-in-out;
-    }
-  }
+  // &:hover {
+  //   path {
+  //     stroke: $couleur-secondaire;
+  //     transition: all 0.3s ease-in-out;
+  //   }
+  // }
 }
 
 .fullpage-menu {
@@ -245,6 +250,7 @@ header {
     height: 33.334%;
     width: 100%;
     background: $couleur-secondaire;
+    border-left: 4px solid $couleur-tertiaire;
     display: block;
   }
 }
@@ -274,7 +280,7 @@ nav {
   li a {
     font-size: 90px;
     font-family: $font-titre;
-    color: $couleur-tertiaire;
+    color: $couleur-principale;
     text-decoration: none;
     text-transform: uppercase;
     font-weight: 600;
@@ -297,7 +303,7 @@ nav {
       bottom: 0;
       left: 0;
       inset: 0 0 0 0;
-      background: $couleur-principale;
+      background: $couleur-tertiaire;
       z-index: -1;
       transition: transform 0.3s ease;
     }
