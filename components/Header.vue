@@ -5,7 +5,7 @@
         <div class="brand-logo" @click="FermerMenu()">
           <nuxt-link to="/">Théo Florès</nuxt-link>
         </div>
-        <button class="menu-toggle" id="menuToggle" @click="ChangeMenuColor()">
+        <button class="menu-toggle" id="menuToggle" @click="ChangeColorMenu()">
           <svg viewBox="0 0 12 10" class="hamburger" height="45px" width="45px">
             <path d="M10,2 L2,2" class="bar-1"></path>
             <path d="M2,5 L10,5" class="bar-2"></path>
@@ -28,9 +28,6 @@
             <li @click="FermerMenu()">
               <nuxt-link to="/">Accueil</nuxt-link>
             </li>
-            <!-- <li @click="FermerMenu()">
-              <nuxt-link to="/about">A propos</nuxt-link>
-            </li> -->
             <li @click="FermerMenu()">
               <nuxt-link to="/">Portfolio</nuxt-link>
             </li>
@@ -56,95 +53,98 @@
 <script>
 export default {
   mounted() {
-    var menuToggle = document.getElementById("menuToggle");
-    var menuBar = gsap.timeline();
-
-    menuBar.to(
-      ".bar-1",
-      0.5,
-      {
-        attr: { d: "M8,2 L2,8" },
-        x: 1,
-        ease: Power2.easeInOut,
-      },
-      "start"
-    );
-
-    menuBar.to(
-      ".bar-2",
-      0.5,
-      {
-        autoAlpha: 0,
-      },
-      "start"
-    );
-
-    menuBar.to(
-      ".bar-3",
-      0.5,
-      {
-        attr: { d: "M8,8 L2,2" },
-        x: 1,
-        ease: Power2.easeInOut,
-      },
-      "start"
-    );
-
-    menuBar.reverse();
-
-    var tl = gsap.timeline({ paused: true });
-
-    tl.to(".fullpage-menu", {
-      duration: 0,
-      display: "block",
-      ease: "Expo.easeInOut",
-    });
-
-    tl.from(".menu-bg span", {
-      duration: 0.8,
-      x: "100%",
-      stagger: 0.1,
-      ease: "Expo.easeInOut",
-    });
-
-    tl.from(
-      ".main-menu li a",
-      {
-        duration: 0.8,
-        y: "100%",
-        stagger: 0.2,
-        ease: "Expo.easeInOut",
-      },
-      "-=0.5"
-    );
-
-    tl.from(
-      ".social-links li",
-      {
-        duration: 0.5,
-        y: "-100%",
-        opacity: 0,
-        stagger: 0.1,
-        ease: "Expo.easeInOut",
-      },
-      "-=0.5"
-    );
-
-    tl.reverse();
-
-    menuToggle.addEventListener("click", function () {
-      menuBar.reversed(!menuBar.reversed());
-      tl.reversed(!tl.reversed());
-    });
+    this.HeaderMenuGSAP();
   },
 
   methods: {
-    FermerMenu: function () {
-      document.getElementById("menuToggle").click();
+    HeaderMenuGSAP() {
+      const menuToggle = document.getElementById("menuToggle");
+      const menuBar = gsap.timeline();
+      const tl = gsap.timeline({ paused: true });
+
+      menuBar.to(
+        ".bar-1",
+        0.5,
+        {
+          attr: { d: "M8,2 L2,8" },
+          x: 1,
+          ease: Power2.easeInOut,
+        },
+        "start"
+      );
+
+      menuBar.to(
+        ".bar-2",
+        0.5,
+        {
+          autoAlpha: 0,
+        },
+        "start"
+      );
+
+      menuBar.to(
+        ".bar-3",
+        0.5,
+        {
+          attr: { d: "M8,8 L2,2" },
+          x: 1,
+          ease: Power2.easeInOut,
+        },
+        "start"
+      );
+
+      menuBar.reverse();
+
+      tl.to(".fullpage-menu", {
+        duration: 0,
+        display: "block",
+        ease: "Expo.easeInOut",
+      });
+
+      tl.from(".menu-bg span", {
+        duration: 0.8,
+        x: "100%",
+        stagger: 0.1,
+        ease: "Expo.easeInOut",
+      });
+
+      tl.from(
+        ".main-menu li a",
+        {
+          duration: 0.8,
+          y: "100%",
+          stagger: 0.2,
+          ease: "Expo.easeInOut",
+        },
+        "-=0.5"
+      );
+
+      tl.from(
+        ".social-links li",
+        {
+          duration: 0.5,
+          y: "-100%",
+          opacity: 0,
+          stagger: 0.1,
+          ease: "Expo.easeInOut",
+        },
+        "-=0.5"
+      );
+
+      tl.reverse();
+
+      menuToggle.addEventListener("click", function () {
+        menuBar.reversed(!menuBar.reversed());
+        tl.reversed(!tl.reversed());
+      });
     },
 
-    ChangeMenuColor: function () {
+    ChangeColorMenu() {
       document.querySelector(".menu-toggle").classList.toggle("color-white");
+    },
+
+    FermerMenu() {
+      document.getElementById("menuToggle").click();
     },
   },
 };

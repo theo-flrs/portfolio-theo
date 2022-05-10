@@ -1,7 +1,11 @@
 <template>
   <div class="main">
     <div class="hero-section">
-      <canvas id="canvas"></canvas>
+      <canvas
+        id="canvas"
+        @mousemove="onMouseMove"
+        @resize="onWindowResize"
+      ></canvas>
       <h1>Théo <b>Florès</b></h1>
       <span>Webdesigner / Webdevelopper</span>
     </div>
@@ -21,13 +25,12 @@
             />
           </video>
           <div class="callout">
+            <img
+              src="https://backend.theo-flores.fr/wp-content/uploads/2022/05/1645892818575.jpg"
+              alt=""
+            />
             <h1>À propos de moi</h1>
-            <div class="desc">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Excepturi itaque nesciunt sapiente, nihil illum eaque aliquid ut
-              vero hic eius optio iure, cumque molestias totam deleniti error
-              quisquam repudiandae libero?
-            </div>
+            <div class="desc">Je dessine</div>
             <a class="button" href="/collections/all">Découvrir mes projets</a>
           </div>
         </div>
@@ -73,71 +76,70 @@ export default {
           return { error: error };
         });
     },
+
+    initThreeJSShape() {
+      this.scene = new THREE.Scene();
+      this.scene.background = new THREE.Color(0x1b1717);
+      this.camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      );
+      const canvasElement = document.querySelector("#canvas");
+      this.renderer = new THREE.WebGLRenderer({
+        canvas: canvasElement,
+      });
+      this.renderer.setSize(window.innerWidth, window.innerHeight);
+
+      this.scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+      var light = new THREE.DirectionalLight();
+      light.position.set(-10, 10, 5);
+      this.scene.add(light);
+
+      this.geometry = new THREE.DodecahedronGeometry(5 * 0.5, 1);
+      this.fog = new THREE.Fog(0x000000);
+      this.material = new THREE.MeshStandardMaterial({
+        color: 0xf0f0f0,
+        emissive: 0xce1212,
+        roughness: 1,
+        wireframe: true,
+      });
+      this.shape = new THREE.Mesh(this.geometry, this.material);
+      this.scene.add(this.shape);
+
+      this.camera.position.set(5, 2, 5);
+      this.camera.lookAt(this.shape.position);
+
+      this.canvas = this.renderer.domElement;
+
+      window.addEventListener("resize", this.onWindowResize, false);
+    },
+
+    animate(time) {
+      time *= 0.001;
+      requestAnimationFrame(this.animate);
+      this.renderer.render(this.scene, this.camera);
+      this.shape.rotation.x = time * 0.5;
+    },
+
+    onMouseMove(event) {
+      this.shape.rotation.y += event.movementX * 0.002;
+      this.shape.rotation.x += event.movementY * 0.002;
+    },
+
+    onWindowResize() {
+      this.renderer.setSize(window.innerWidth, window.innerHeight);
+      //shape.scale.set( 2 , 1 , 1 );
+      this.camera.aspect = window.innerWidth / window.innerHeight;
+      this.camera.updateProjectionMatrix();
+    },
   },
 
   mounted() {
-    // CODE THREE JS ----------------------------
-    var scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x1b1717);
-    var camera = new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
-    );
-    const canvasElement = document.querySelector("#canvas");
-    const renderer = new THREE.WebGLRenderer({
-      canvas: canvasElement,
-    });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-
-    scene.add(new THREE.AmbientLight(0xffffff, 0.5));
-    var light = new THREE.DirectionalLight();
-    light.position.set(-10, 10, 5);
-    scene.add(light);
-
-    // const geometry = new THREE.BoxGeometry(3, 3, 3);
-    // const geometry = new THREE.SphereGeometry(1.5, 30, 20,0,Math.PI * 2,0, Math.PI);
-    // const geometry = new THREE.IcosahedronGeometry(3, 0);
-    const geometry = new THREE.DodecahedronGeometry(5 * 0.5, 1);
-    const fog = new THREE.Fog(0x000000);
-    const material = new THREE.MeshStandardMaterial({
-      color: 0xf0f0f0,
-      emissive: 0xce1212,
-      roughness: 1,
-      wireframe: true,
-    });
-    var cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
-
-    camera.position.set(5, 2, 5);
-    camera.lookAt(cube.position);
-
-    var canvas = renderer.domElement;
-
-    canvas.addEventListener("mousemove", onMouseMove);
-    function animate(time) {
-      time *= 0.001;
-      requestAnimationFrame(animate);
-      renderer.render(scene, camera);
-      cube.rotation.x = time * 0.5;
-    }
-    animate();
-    function onMouseMove(event) {
-      cube.rotation.y += event.movementX * 0.002;
-      cube.rotation.x += event.movementY * 0.002;
-    }
-
-    window.addEventListener("resize", onWindowResize, false);
-
-    function onWindowResize() {
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      //cube.scale.set( 2 , 1 , 1 );
-
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-    }
-    // FIN CODE THREE JS ----------------------------
+    this.initThreeJSShape();
+    this.animate();
+    this.onWindowResize();
   },
 };
 </script>
@@ -148,6 +150,7 @@ export default {
 .hero-section {
   h1 {
     position: absolute;
+    white-space: nowrap;
     z-index: 1;
     top: 50%;
     left: 50%;
@@ -162,10 +165,15 @@ export default {
     b {
       color: $couleur-tertiaire;
     }
+
+    @media (max-width: 760px) {
+      font-size: 13vw;
+    }
   }
 
   span {
     position: absolute;
+    white-space: nowrap;
     z-index: 1;
     top: 56%;
     left: 50%;
@@ -175,6 +183,10 @@ export default {
     color: $couleur-principale;
     font-size: 30px;
     font-weight: 500;
+
+    @media (max-width: 760px) {
+      font-size: 4.5vw;
+    }
   }
 }
 
@@ -184,6 +196,8 @@ export default {
 }
 
 .about-me-section {
+  position: relative;
+  z-index: 0;
   display: flex;
   justify-content: center;
   padding: 60px;
@@ -196,12 +210,12 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    @media (max-width: 767px) {
-      height: 325px;
-    }
-
     outline: 2px solid $couleur-principale;
     outline-offset: 15px;
+
+    @media (max-width: 767px) {
+      height: 700px;
+    }
   }
 
   .hero-video {
@@ -211,7 +225,7 @@ export default {
       position: relative;
       overflow: hidden;
       @media (max-width: 767px) {
-        height: 325px;
+        height: 700px;
       }
     }
 
@@ -223,7 +237,7 @@ export default {
       top: 0;
       left: 0;
       @media (max-width: 767px) {
-        height: 325px;
+        height: 700px;
       }
     }
 
@@ -251,6 +265,22 @@ export default {
       z-index: 10;
       width: 50%;
       margin: auto;
+      img {
+        clip-path: polygon(
+          30% 0%,
+          70% 0%,
+          100% 30%,
+          100% 70%,
+          70% 100%,
+          30% 100%,
+          0% 70%,
+          0% 30%
+        );
+        width: auto;
+        height: 40%;
+        filter: grayscale(1);
+        margin: 30px;
+      }
       @media (max-width: 767px) {
         width: 90%;
       }
@@ -291,14 +321,16 @@ export default {
       color: $couleur-quaternaire;
       text-decoration: none;
       font-weight: bold;
+      transition: all 0.3s ease-in-out;
       @media (max-width: 767px) {
         padding: 10px 20px;
       }
     }
     .button:hover {
       cursor: pointer;
-      background-color:$couleur-quaternaire;
+      background-color: $couleur-quaternaire;
       color: $couleur-principale;
+      transform: translateY(-5px);
     }
   }
 }
