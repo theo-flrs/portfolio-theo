@@ -62,36 +62,39 @@ export default {
       const menuBar = gsap.timeline();
       const tl = gsap.timeline({ paused: true });
 
-      menuBar.to(
-        ".bar-1",
-        0.5,
-        {
-          attr: { d: "M8,2 L2,8" },
-          x: 1,
-          ease: Power2.easeInOut,
-        },
-        "start"
-      );
+      tl.set("html", { overflow: "hidden" });
 
-      menuBar.to(
-        ".bar-2",
-        0.5,
-        {
-          autoAlpha: 0,
-        },
-        "start"
-      );
+      menuBar
+        .to(
+          ".bar-1",
+          0.5,
+          {
+            attr: { d: "M8,2 L2,8" },
+            x: 1,
+            ease: Power2.easeInOut,
+          },
+          "start"
+        )
 
-      menuBar.to(
-        ".bar-3",
-        0.5,
-        {
-          attr: { d: "M8,8 L2,2" },
-          x: 1,
-          ease: Power2.easeInOut,
-        },
-        "start"
-      );
+        .to(
+          ".bar-2",
+          0.5,
+          {
+            autoAlpha: 0,
+          },
+          "start"
+        )
+
+        .to(
+          ".bar-3",
+          0.5,
+          {
+            attr: { d: "M8,8 L2,2" },
+            x: 1,
+            ease: Power2.easeInOut,
+          },
+          "start"
+        );
 
       menuBar.reverse();
 
@@ -102,7 +105,7 @@ export default {
       });
 
       tl.from(".menu-bg span", {
-        duration: 0.8,
+        duration: 0.7,
         x: "100%",
         stagger: 0.1,
         ease: "Expo.easeInOut",

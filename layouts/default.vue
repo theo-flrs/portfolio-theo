@@ -37,30 +37,36 @@ html {
 
 body {
   background-color: $couleur-blanc;
-  padding: 20px;
+  padding: 10px;
 }
 
 .main {
   // background-color: $couleur-blanc;
 }
 
-/* width */
 ::-webkit-scrollbar {
   width: 5px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   background: $couleur-blanc;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: $couleur-tertiaire;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+::-moz-selection {
+  color: $couleur-secondaire;
+  background-color: $couleur-tertiaire;
+}
+
+::selection {
+  color: $couleur-secondaire;
+  background-color: $couleur-tertiaire;
 }
 </style>

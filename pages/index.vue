@@ -11,30 +11,70 @@
     </div>
 
     <div class="about-me-section">
-      <div class="outter hero-video">
-        <div class="video-container">
-          <video
-            autoplay
-            loop
-            muted
-            poster="https://backend.theo-flores.fr/wp-content/uploads/2022/05/abstract_background.png"
-          >
-            <source
-              src="https://backend.theo-flores.fr/wp-content/uploads/2022/05/abtract_background_theo_flores.mp4"
-              type="video/mp4"
-            />
-          </video>
-          <div class="callout">
-            <img
-              src="https://backend.theo-flores.fr/wp-content/uploads/2022/05/1645892818575.jpg"
-              alt=""
-            />
-            <h1>À propos de moi</h1>
-            <div class="desc">Je dessine</div>
-            <a class="button" href="/collections/all">Découvrir mes projets</a>
+      <section class="container">
+        <div class="contenu-container">
+          <div class="contenu-des-textes" role="marquee">
+            <div class="ligne-textes">
+              <div class="texte-anime -default">
+                <span>A PROPOS DE MOI</span>
+              </div>
+              <div class="texte-anime -effect">
+                <span>A PROPOS DE MOI</span>
+              </div>
+              <div class="texte-anime -default">
+                <span>A PROPOS DE MOI</span>
+              </div>
+              <div class="texte-anime -effect">
+                <span>A PROPOS DE MOI</span>
+              </div>
+              <div class="texte-anime -default">
+                <span>A PROPOS DE MOI</span>
+              </div>
+            </div>
           </div>
         </div>
+      </section>
+
+      <div class="content-about">
+        <img
+          src="https://backend.theo-flores.fr/wp-content/uploads/2022/05/theo-flores-nb.jpg"
+          alt=""
+        />
+        <div class="sub-content">
+          <h1>Hey ! Moi c'est Théo</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio
+            expedita beatae asperiores, id dolores placeat eius laudantium! Quos
+            quisquam quasi perferendis nulla. Rerum cupiditate vitae harum
+            facere cumque voluptas eum.
+          </p>
+          <a href="">Découvrir mes projets</a>
+        </div>
       </div>
+
+      <section class="container">
+        <div class="contenu-container">
+          <div class="contenu-des-textes" role="marquee">
+            <div class="ligne-textes">
+              <div class="texte-anime -default">
+                <span>A PROPOS DE MOI</span>
+              </div>
+              <div class="texte-anime -effect">
+                <span>A PROPOS DE MOI</span>
+              </div>
+              <div class="texte-anime -default">
+                <span>A PROPOS DE MOI</span>
+              </div>
+              <div class="texte-anime -effect">
+                <span>A PROPOS DE MOI</span>
+              </div>
+              <div class="texte-anime -default">
+                <span>A PROPOS DE MOI</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
 
     <div v-if="posts">
@@ -134,12 +174,38 @@ export default {
       this.camera.aspect = window.innerWidth / window.innerHeight;
       this.camera.updateProjectionMatrix();
     },
+
+    textScrollingInfinite() {
+      const rows = document.querySelectorAll(".ligne-textes");
+
+      rows.forEach(function (e, i) {
+        let row_width = e.getBoundingClientRect().width;
+        let row_item_width = e.children[0].getBoundingClientRect().width;
+        let initial_offset = ((2 * row_item_width) / row_width) * 100 * -1;
+
+        gsap.set(e, {
+          xPercent: `${initial_offset}`,
+        });
+
+        let duration = 5.5 * (i + 1);
+
+        var tl = gsap.timeline();
+
+        tl.to(e, {
+          ease: "none",
+          duration: duration,
+          xPercent: 0,
+          repeat: -1,
+        });
+      });
+    },
   },
 
   mounted() {
     this.initThreeJSShape();
     this.animate();
     this.onWindowResize();
+    this.textScrollingInfinite();
   },
 };
 </script>
@@ -148,6 +214,7 @@ export default {
 @import "~assets/scss/variables";
 
 .hero-section {
+  background-color: $couleur-secondaire;
   h1 {
     position: absolute;
     white-space: nowrap;
@@ -196,141 +263,105 @@ export default {
 }
 
 .about-me-section {
-  position: relative;
-  z-index: 0;
-  display: flex;
-  justify-content: center;
-  padding: 60px;
-  background-color: $couleur-secondaire;
-
-  .outter.hero-video {
-    width: 95%;
-    height: 100%;
+  .content-about {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
     align-items: center;
-    outline: 2px solid $couleur-principale;
-    outline-offset: 15px;
 
-    @media (max-width: 767px) {
-      height: 700px;
+    img {
+      width: 30vw;
+      height: 50vh;
+      object-fit: cover;
+      margin: 30px;
+      outline: 5px solid $couleur-noir;
+      outline-offset: 10px;
+    }
+
+    .sub-content {
+      flex-direction: column;
+      padding: 10%;
+
+      h1 {
+        display: inline-block;
+        font-family: $font-titre;
+        font-weight: 900;
+        font-size: 50px;
+      }
+
+      p {
+        display: inline-block;
+        font-family: $font-paragraphe;
+        font-size: 20px;
+        font-weight: 500;
+        margin: 15px 0px;
+      }
+
+      a {
+        display: inline-block;
+        background-color: $couleur-quaternaire;
+        padding: 15px 40px;
+        text-decoration: none;
+        color: $couleur-blanc;
+        font-size: 20px;
+        font-weight: 600;
+        font-family: $font-paragraphe;
+        margin: 15px 0px;
+      }
     }
   }
 
-  .hero-video {
-    .video-container {
-      width: 100%;
-      height: 550px;
+  .container {
+    display: block;
+    position: relative;
+  }
+
+  .contenu-container {
+    padding: 30px 0;
+    background-color: $couleur-secondaire;
+    border-top: 5px solid $couleur-tertiaire;
+    border-bottom: 5px solid $couleur-tertiaire;
+  }
+
+  .contenu-des-textes {
+    // margin: -58px 0;
+    overflow: hidden;
+    cursor: default;
+  }
+
+  .ligne-textes {
+    display: flex;
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .texte-anime {
+    position: relative;
+    line-height: 100%;
+    font-size: 2.5vw;
+    flex: 0 0 33%;
+    padding: 15px 0;
+    text-transform: uppercase;
+
+    span {
       position: relative;
-      overflow: hidden;
-      @media (max-width: 767px) {
-        height: 700px;
-      }
-    }
-
-    video {
-      object-fit: cover; // Set the magic
-      position: absolute;
-      width: 100%;
-      height: 550px;
-      top: 0;
-      left: 0;
-      @media (max-width: 767px) {
-        height: 700px;
-      }
-    }
-
-    .video-container:after {
-      content: "";
-      display: block;
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      background: rgba(black, 0.2);
+      display: inline-block;
       z-index: 1;
     }
 
-    .callout {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      height: 100%;
-      text-align: center;
-      position: relative;
-      z-index: 10;
-      width: 50%;
-      margin: auto;
-      img {
-        clip-path: polygon(
-          30% 0%,
-          70% 0%,
-          100% 30%,
-          100% 70%,
-          70% 100%,
-          30% 100%,
-          0% 70%,
-          0% 30%
-        );
-        width: auto;
-        height: 40%;
-        filter: grayscale(1);
-        margin: 30px;
-      }
-      @media (max-width: 767px) {
-        width: 90%;
-      }
-    }
-
-    h1 {
+    &.-effect {
+      // color: transparent;
+      // text-shadow: none;
+      // -webkit-text-stroke: 1px rgba(255, 255, 255, 0.9);
       font-family: $font-titre;
-      font-weight: 800;
-      text-transform: uppercase;
-      margin: 0 0 1rem;
-      padding: 0;
-      line-height: 1;
-      color: $couleur-principale;
-      @media (max-width: 767px) {
-        font-size: 32px;
-      }
-      @media (min-width: 768px) {
-        font-size: 52px;
-      }
+      font-weight: 700;
+      color: $couleur-blanc;
     }
 
-    .desc {
-      color: $couleur-principale;
-      font-weight: 400;
-      font-size: 18px;
+    &.-default {
+      color: $couleur-tertiaire;
+      font-weight: 700;
       font-family: $font-paragraphe;
-    }
-
-    .button {
-      font-family: $font-paragraphe;
-      text-transform: uppercase;
-      background-color: transparent;
-      border-radius: 0px;
-      margin-top: 20px;
-      background-color: $couleur-principale;
-      padding: 15px 30px;
-      border-radius: 0px;
-      color: $couleur-quaternaire;
-      text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s ease-in-out;
-      @media (max-width: 767px) {
-        padding: 10px 20px;
-      }
-    }
-    .button:hover {
-      cursor: pointer;
-      background-color: $couleur-quaternaire;
-      color: $couleur-principale;
-      transform: translateY(-5px);
     }
   }
 }
