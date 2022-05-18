@@ -16,19 +16,19 @@
           <div class="contenu-des-textes" role="marquee">
             <div class="ligne-textes">
               <div class="texte-anime -default">
-                <span>A PROPOS DE MOI</span>
+                <span>À PROPOS DE MOI</span>
               </div>
               <div class="texte-anime -effect">
-                <span>A PROPOS DE MOI</span>
+                <span>À PROPOS DE MOI</span>
               </div>
               <div class="texte-anime -default">
-                <span>A PROPOS DE MOI</span>
+                <span>À PROPOS DE MOI</span>
               </div>
               <div class="texte-anime -effect">
-                <span>A PROPOS DE MOI</span>
+                <span>À PROPOS DE MOI</span>
               </div>
               <div class="texte-anime -default">
-                <span>A PROPOS DE MOI</span>
+                <span>À PROPOS DE MOI</span>
               </div>
             </div>
           </div>
@@ -36,45 +36,164 @@
       </section>
 
       <div class="content-about">
-        <img
+        <div class="img-border">
+          <span></span>
+        </div>
+        <!-- <img
           src="https://backend.theo-flores.fr/wp-content/uploads/2022/05/theo-flores-nb.jpg"
           alt=""
-        />
+        /> -->
         <div class="sub-content">
-          <h1>Hey ! Moi c'est Théo</h1>
+          <h1>Hey !</h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio
-            expedita beatae asperiores, id dolores placeat eius laudantium! Quos
-            quisquam quasi perferendis nulla. Rerum cupiditate vitae harum
-            facere cumque voluptas eum.
+            Bienvenue à toi sur mon portfolio. J'ai <b>22 ans</b> et je suis
+            étudiant en <b>Webdesign</b>. <br /><br />Actuellement en
+            <b>Bachelor 3 Webdesign à MyDigitalSchool Nantes</b>, j'occupe le
+            poste de <b>Webdesigner / Intégrateur Web</b> au sein de
+            l'entreprise <b>Kiwatch</b> à Orvault. <br /><br />Depuis
+            <b>plus de 3 ans</b>, le design et le développement web sont
+            devenues mes principales passions. Mon objectif est de
+            <b>développer au maximum mes compétences</b> dans ces domaines afin
+            de mener au mieux mes différents projets.
           </p>
-          <a href="">Découvrir mes projets</a>
+          <nuxt-link class="link" to="/">Découvrir mes projets</nuxt-link>
         </div>
       </div>
+    </div>
 
-      <section class="container">
-        <div class="contenu-container">
-          <div class="contenu-des-textes" role="marquee">
-            <div class="ligne-textes">
-              <div class="texte-anime -default">
-                <span>A PROPOS DE MOI</span>
-              </div>
-              <div class="texte-anime -effect">
-                <span>A PROPOS DE MOI</span>
-              </div>
-              <div class="texte-anime -default">
-                <span>A PROPOS DE MOI</span>
-              </div>
-              <div class="texte-anime -effect">
-                <span>A PROPOS DE MOI</span>
-              </div>
-              <div class="texte-anime -default">
-                <span>A PROPOS DE MOI</span>
-              </div>
-            </div>
+    <div class="experiences-section">
+      <h2>
+        Mes <br />
+        <span>expériences</span>
+      </h2>
+      <div
+        v-for="experience in experiences"
+        :style="`background: linear-gradient(0deg, rgba(0,0,0,1) 10%, rgba(206,18,18,0) 100%), url(${experience.acf.image_de_experience.url});`"
+        :key="experience.acf.nom_de_entreprise"
+        class="mes-experiences"
+      >
+        <img :src="experience.acf.icone_de_experience.url" loading="lazy" />
+        <h3>{{ experience.acf.nom_de_entreprise }}</h3>
+        <span class="date">
+          {{ experience.acf.date_de_debut_experience }} -
+          {{ experience.acf.date_de_fin_experience }}
+        </span>
+        <span class="poste-occupe">{{
+          experience.acf.poste_occupe_dans_entreprise
+        }}</span>
+        <p>{{ experience.acf.description_de_experience }}</p>
+      </div>
+    </div>
+
+    <div class="formations-section">
+      <h2>
+        Mes <br />
+        <span>formations</span>
+      </h2>
+      <div
+        v-for="formation in formations"
+        :style="`background: linear-gradient(0deg, rgba(0,0,0,1) 10%, rgba(206,18,18,0) 100%), url(${formation.acf.image_de_la_formation.url});`"
+        :key="formation.acf.titre_de_la_formation"
+        class="mes-formations"
+      >
+        <img :src="formation.acf.logo_de_la_formation.url" loading="lazy" />
+        <h3>{{ formation.acf.titre_de_la_formation }}</h3>
+        <span class="date">
+          {{ formation.acf.date_de_debut_formation }} -
+          {{ formation.acf.date_de_fin_formation }}
+        </span>
+        <p>{{ formation.acf.description_de_la_formation }}</p>
+      </div>
+    </div>
+
+    <div class="competences-section">
+      <div class="competences-title">
+        <h1><span>Mes com</span>pétences</h1>
+      </div>
+
+      <div class="competences-layout">
+        <div class="competences-design">
+          <h2>Design</h2>
+          <div class="container">
+            <CardSkill
+              data-image="https://backend.theo-flores.fr/wp-content/uploads/2022/05/Figma.png"
+            >
+              <h1 slot="header">Figma</h1>
+            </CardSkill>
+            <CardSkill
+              data-image="https://backend.theo-flores.fr/wp-content/uploads/2022/05/AdobePhotoshop.png"
+            >
+              <h1 slot="header">
+                Adobe<br />
+                Photoshop
+              </h1>
+            </CardSkill>
+            <CardSkill
+              data-image="https://backend.theo-flores.fr/wp-content/uploads/2022/05/AdobeIllustrator.png"
+            >
+              <h1 slot="header">Adobe<br />Illustrator</h1>
+            </CardSkill>
+            <CardSkill
+              data-image="https://backend.theo-flores.fr/wp-content/uploads/2022/05/AdobeAfterEffect.png"
+            >
+              <h1 slot="header">
+                Adobe<br />
+                After Effect
+              </h1>
+            </CardSkill>
+            <CardSkill
+              data-image="https://backend.theo-flores.fr/wp-content/uploads/2022/05/AdobePremierePro.png"
+            >
+              <h1 slot="header">
+                Adobe<br />
+                Premiere Pro
+              </h1>
+            </CardSkill>
+
+            <CardSkill
+              data-image="https://backend.theo-flores.fr/wp-content/uploads/2022/05/UXUI.png"
+            >
+              <h1 slot="header">UX/UI</h1>
+            </CardSkill>
           </div>
         </div>
-      </section>
+
+        <div class="competences-developpement">
+          <h2>Développement web</h2>
+          <div class="container">
+            <CardSkill
+              data-image="https://backend.theo-flores.fr/wp-content/uploads/2022/05/VUEJS.png"
+            >
+              <h1 slot="header">Vue.JS</h1>
+            </CardSkill>
+            <CardSkill
+              data-image="https://backend.theo-flores.fr/wp-content/uploads/2022/05/NUXTJS.png"
+            >
+              <h1 slot="header">Nuxt.JS</h1>
+            </CardSkill>
+            <CardSkill
+              data-image="https://backend.theo-flores.fr/wp-content/uploads/2022/05/THREEJS.png"
+            >
+              <h1 slot="header">Three.JS</h1>
+            </CardSkill>
+            <CardSkill
+              data-image="https://backend.theo-flores.fr/wp-content/uploads/2022/05/HTML5-CSS3.png"
+            >
+              <h1 slot="header">HTML5/CSS3</h1>
+            </CardSkill>
+            <CardSkill
+              data-image="https://backend.theo-flores.fr/wp-content/uploads/2022/05/JAVASCRIPT.png"
+            >
+              <h1 slot="header">Javascript</h1>
+            </CardSkill>
+            <CardSkill
+              data-image="https://backend.theo-flores.fr/wp-content/uploads/2022/05/WORDPRESS.png"
+            >
+              <h1 slot="header">Wordpress</h1>
+            </CardSkill>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div v-if="posts">
@@ -91,25 +210,56 @@
 <script>
 import axios from "axios";
 import * as THREE from "three";
+
 export default {
+  components: true,
   data() {
     return {
       posts: [],
+      experiences: [],
+      formations: [],
       error: [],
+      active: 0,
     };
   },
   created() {
-    this.fetchData();
+    this.fetchDataPosts();
+    this.fetchDataExperiences();
+    this.fetchDataFormations();
   },
   watch: {
-    $route: "fetchData",
+    $route: ["fetchDataPosts", "fetchDataExperiences", "fetchDataFormations"],
   },
   methods: {
-    fetchData() {
+    fetchDataPosts() {
       return axios
         .get("https://backend.theo-flores.fr/wp-json/acf/v3/portfolio")
         .then((response) => {
           this.posts = response.data;
+          return;
+        })
+        .catch((error) => {
+          return { error: error };
+        });
+    },
+
+    fetchDataExperiences() {
+      return axios
+        .get("https://backend.theo-flores.fr/wp-json/acf/v3/experience")
+        .then((response2) => {
+          this.experiences = response2.data;
+          return;
+        })
+        .catch((error) => {
+          return { error: error };
+        });
+    },
+
+    fetchDataFormations() {
+      return axios
+        .get("https://backend.theo-flores.fr/wp-json/acf/v3/formation")
+        .then((response3) => {
+          this.formations = response3.data;
           return;
         })
         .catch((error) => {
@@ -131,12 +281,10 @@ export default {
         canvas: canvasElement,
       });
       this.renderer.setSize(window.innerWidth, window.innerHeight);
-
       this.scene.add(new THREE.AmbientLight(0xffffff, 0.5));
       var light = new THREE.DirectionalLight();
       light.position.set(-10, 10, 5);
       this.scene.add(light);
-
       this.geometry = new THREE.DodecahedronGeometry(5 * 0.5, 1);
       this.fog = new THREE.Fog(0x000000);
       this.material = new THREE.MeshStandardMaterial({
@@ -147,12 +295,9 @@ export default {
       });
       this.shape = new THREE.Mesh(this.geometry, this.material);
       this.scene.add(this.shape);
-
       this.camera.position.set(5, 2, 5);
       this.camera.lookAt(this.shape.position);
-
       this.canvas = this.renderer.domElement;
-
       window.addEventListener("resize", this.onWindowResize, false);
     },
 
@@ -162,12 +307,10 @@ export default {
       this.renderer.render(this.scene, this.camera);
       this.shape.rotation.x = time * 0.5;
     },
-
     onMouseMove(event) {
       this.shape.rotation.y += event.movementX * 0.002;
       this.shape.rotation.x += event.movementY * 0.002;
     },
-
     onWindowResize() {
       this.renderer.setSize(window.innerWidth, window.innerHeight);
       //shape.scale.set( 2 , 1 , 1 );
@@ -267,36 +410,86 @@ export default {
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin: 20px;
 
-    img {
-      width: 30vw;
-      height: 50vh;
-      object-fit: cover;
-      margin: 30px;
-      outline: 5px solid $couleur-noir;
-      outline-offset: 10px;
+    @media screen and(max-width:700px) {
+      flex-direction: column-reverse;
+    }
+    .img-border {
+      background: url("https://backend.theo-flores.fr/wp-content/uploads/2022/05/theo-flores-nb.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      position: relative;
+
+      span {
+        display: block;
+        width: 30vw;
+        height: 50vh;
+        position: relative;
+        transition: transform 0.2s ease-in-out;
+
+        @media screen and(max-width:700px) {
+          width: 70vw;
+        }
+
+        &:before,
+        &:after {
+          position: absolute;
+          content: "";
+          transition: all 0.25s;
+        }
+
+        &:before {
+          border-bottom: 4px solid $couleur-tertiaire;
+          border-left: 4px solid $couleur-tertiaire;
+          width: 10%;
+          height: 33%;
+          left: -15px;
+          bottom: -15px;
+        }
+
+        &:after {
+          border-top: 4px solid $couleur-noir;
+          border-right: 4px solid $couleur-noir;
+          width: 10%;
+          height: 33%;
+          top: -15px;
+          right: -15px;
+        }
+
+        &:hover:before {
+          width: 60%;
+          height: 90%;
+        }
+
+        &:hover:after {
+          width: 80%;
+          height: 50%;
+        }
+      }
     }
 
     .sub-content {
       flex-direction: column;
-      padding: 10%;
+      padding: 5% 10%;
 
       h1 {
-        display: inline-block;
+        display: block;
         font-family: $font-titre;
         font-weight: 900;
         font-size: 50px;
       }
 
       p {
-        display: inline-block;
+        display: block;
         font-family: $font-paragraphe;
         font-size: 20px;
         font-weight: 500;
         margin: 15px 0px;
       }
 
-      a {
+      .link {
         display: inline-block;
         background-color: $couleur-quaternaire;
         padding: 15px 40px;
@@ -306,6 +499,12 @@ export default {
         font-weight: 600;
         font-family: $font-paragraphe;
         margin: 15px 0px;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+          background-color: $couleur-tertiaire;
+          transform: translateX(10px);
+        }
       }
     }
   }
@@ -313,55 +512,289 @@ export default {
   .container {
     display: block;
     position: relative;
-  }
 
-  .contenu-container {
-    padding: 30px 0;
-    background-color: $couleur-secondaire;
-    border-top: 5px solid $couleur-tertiaire;
-    border-bottom: 5px solid $couleur-tertiaire;
-  }
+    .contenu-container {
+      padding: 30px 0;
+      background-color: $couleur-secondaire;
+      border-top: 5px solid $couleur-tertiaire;
+      border-bottom: 5px solid $couleur-tertiaire;
+    }
 
-  .contenu-des-textes {
-    // margin: -58px 0;
-    overflow: hidden;
-    cursor: default;
-  }
+    .contenu-des-textes {
+      // margin: -58px 0;
+      overflow: hidden;
+      cursor: default;
+    }
 
-  .ligne-textes {
-    display: flex;
-    position: relative;
-    text-align: center;
-    white-space: nowrap;
-  }
+    .ligne-textes {
+      display: flex;
+      position: relative;
+      text-align: center;
+      white-space: nowrap;
+    }
 
-  .texte-anime {
-    position: relative;
-    line-height: 100%;
-    font-size: 2.5vw;
-    flex: 0 0 33%;
-    padding: 15px 0;
-    text-transform: uppercase;
+    .texte-anime {
+      position: relative;
+      line-height: 100%;
+      font-size: 2.5vw;
+      flex: 0 0 33%;
+      padding: 15px 0;
+      text-transform: uppercase;
+
+      span {
+        position: relative;
+        display: inline-block;
+        z-index: 1;
+      }
+
+      &.-effect {
+        // color: transparent;
+        // text-shadow: none;
+        // -webkit-text-stroke: 1px rgba(255, 255, 255, 0.9);
+        font-family: $font-titre;
+        font-weight: 700;
+        color: $couleur-blanc;
+      }
+
+      &.-default {
+        color: $couleur-tertiaire;
+        font-weight: 700;
+        font-family: $font-paragraphe;
+      }
+    }
+  }
+}
+
+.experiences-section {
+  display: flex;
+  flex-direction: row;
+  padding: 0% 3%;
+
+  h2 {
+    font-family: $font-titre;
+    font-size: 35px;
+    font-weight: 800;
+    padding: 3% 1%;
+    align-self: center;
 
     span {
-      position: relative;
-      display: inline-block;
-      z-index: 1;
-    }
-
-    &.-effect {
-      // color: transparent;
-      // text-shadow: none;
-      // -webkit-text-stroke: 1px rgba(255, 255, 255, 0.9);
-      font-family: $font-titre;
-      font-weight: 700;
-      color: $couleur-blanc;
-    }
-
-    &.-default {
       color: $couleur-tertiaire;
-      font-weight: 700;
+    }
+  }
+
+  @media screen and(max-width:900px) {
+    flex-direction: column;
+  }
+  .mes-experiences {
+    display: flex;
+    flex-direction: column;
+    padding: 7% 3%;
+    margin: 1.5%;
+    justify-content: space-evenly;
+    flex: 1;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center center;
+    color: $couleur-principale;
+
+    h2,
+    .date,
+    .poste-occupe,
+    p {
+      padding: 3px 0px;
+    }
+
+    img {
+      width: 100%;
+      height: 150px;
+      object-fit: contain;
+    }
+
+    h3 {
+      font-family: $font-titre;
+      font-size: 35px;
+      font-weight: 800;
+      border-bottom: 2px solid $couleur-tertiaire;
+      margin-bottom: 10px;
+    }
+    .date {
       font-family: $font-paragraphe;
+      font-size: 16px;
+      font-weight: 300;
+    }
+
+    .poste-occupe {
+      font-family: $font-paragraphe;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    p {
+      font-family: $font-paragraphe;
+      font-size: 16px;
+      font-weight: 500;
+      white-space: pre-wrap;
+    }
+  }
+}
+
+.formations-section {
+  display: flex;
+  flex-direction: row;
+  padding: 0% 3%;
+
+  h2 {
+    font-family: $font-titre;
+    font-size: 35px;
+    font-weight: 800;
+    padding: 3% 1%;
+    align-self: center;
+
+    span {
+      color: $couleur-tertiaire;
+    }
+  }
+
+  @media screen and(max-width:900px) {
+    flex-direction: column;
+  }
+  .mes-formations {
+    display: flex;
+    flex-direction: column;
+    padding: 7% 3%;
+    margin: 1.5%;
+    justify-content: space-evenly;
+    flex: 1;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center center;
+    color: $couleur-principale;
+
+    h2,
+    .date,
+    .poste-occupe,
+    p {
+      padding: 3px 0px;
+    }
+
+    img {
+      width: 100%;
+      height: 125px;
+      object-fit: contain;
+      object-position: left;
+      padding: 3% 0%;
+
+      @media screen and(max-width:900px) {
+        object-position: center;
+      }
+    }
+
+    h3 {
+      font-family: $font-titre;
+      font-size: 35px;
+      font-weight: 800;
+      border-bottom: 2px solid $couleur-tertiaire;
+      margin-bottom: 10px;
+    }
+    .date {
+      font-family: $font-paragraphe;
+      font-size: 16px;
+      font-weight: 300;
+    }
+
+    p {
+      font-family: $font-paragraphe;
+      font-size: 16px;
+      font-weight: 500;
+      white-space: pre-wrap;
+    }
+  }
+}
+
+.competences-section {
+  padding: 3%;
+  background: linear-gradient(
+    90deg,
+    $couleur-principale 50%,
+    $couleur-secondaire 50%
+  );
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  // border-top: 5px solid $couleur-tertiaire;
+
+  @media screen and(max-width:700px) {
+    background: $couleur-secondaire;
+  }
+
+  .competences-title {
+    h1 {
+      color: $couleur-principale;
+      font-family: $font-paragraphe;
+      font-size: 50px;
+      margin-bottom: 40px;
+      padding: 20px;
+      text-align: center;
+      background: linear-gradient(
+        90deg,
+        $couleur-secondaire 50%,
+        $couleur-quaternaire 50%
+      );
+
+      @media screen and(max-width:700px) {
+        background: $couleur-quaternaire;
+      }
+
+      span {
+        font-family: $font-titre;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .competences-layout {
+    display: flex;
+    flex-direction: row;
+
+    @media screen and(max-width:700px) {
+      flex-direction: column;
+    }
+  }
+
+  .competences-design,
+  .competences-developpement {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .competences-design {
+    h2 {
+      font-family: $font-titre;
+      font-size: 40px;
+      font-weight: 800;
+      color: $couleur-secondaire;
+      text-align: center;
+
+      @media screen and(max-width:700px) {
+        color: $couleur-blanc;
+      }
+    }
+    .card {
+      border: 2px solid $couleur-secondaire;
+    }
+  }
+
+  .competences-developpement {
+    h2 {
+      font-family: $font-paragraphe;
+      font-size: 40px;
+      font-weight: 700;
+      color: #a80d0d;
+      text-align: center;
+    }
+    .card {
+      border: 2px solid $couleur-principale;
     }
   }
 }
