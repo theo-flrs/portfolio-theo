@@ -196,11 +196,16 @@
       </div>
     </div>
 
-    <div v-if="posts">
-      <div v-for="post in posts" :key="post.acf.nom_du_projet">
+    <div class="projets-section" v-if="posts">
+      <div
+        v-for="post in posts"
+        :key="post.acf.titre_du_projet"
+        :style="`background: url(${post.acf.image_principale_du_projet.url});`"
+      >
         <nuxt-link :to="{ name: 'portfolio-id', params: { id: post.id } }">
-          <h1>{{ post.acf.nom_du_projet }}</h1>
-          <p>{{ post.acf.description_du_projet }}</p>
+          <h1>{{ post.acf.titre_du_projet }}</h1>
+          <span>{{ post.acf.annee_du_projet }}</span>
+          <span>{{ post.acf.categorie_du_projet }}</span>
           <p>Lire plus</p>
         </nuxt-link>
       </div>
@@ -797,5 +802,8 @@ export default {
       border: 2px solid $couleur-principale;
     }
   }
+}
+
+.projets-section {
 }
 </style>
