@@ -2,7 +2,7 @@
   <div>
     <header>
       <div class="header-row">
-        <div class="brand-logo" @click="FermerMenu()">
+        <div class="brand-logo">
           <nuxt-link to="/">Théo Florès</nuxt-link>
         </div>
         <button class="menu-toggle" id="menuToggle" @click="ChangeColorMenu()">

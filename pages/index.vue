@@ -196,20 +196,37 @@
       </div>
     </div>
 
-    <div class="projets-section" v-if="posts">
-      <div
-        v-for="post in posts"
-        :key="post.acf.titre_du_projet"
-        :style="`background: url(${post.acf.image_principale_du_projet.url});`"
-      >
-        <nuxt-link :to="{ name: 'portfolio-id', params: { id: post.id } }">
-          <h1>{{ post.acf.titre_du_projet }}</h1>
-          <span>{{ post.acf.annee_du_projet }}</span>
-          <span>{{ post.acf.categorie_du_projet }}</span>
-          <p>Lire plus</p>
+    <div class="projets-section">
+      <div class="projets-section-title">
+        <h4>Mes derniers <span>projets</span></h4>
+        <nuxt-link to="/portfolio-main">
+          <span class="text">Voir tous mes projets</span>
+          <span class="line -right"></span>
+          <span class="line -top"></span>
+          <span class="line -left"></span>
+          <span class="line -bottom"></span>
         </nuxt-link>
       </div>
+      <div class="projets-main" v-if="posts">
+        <div v-for="post in posts" :key="post.acf.titre_du_projet">
+          <nuxt-link :to="{ name: 'portfolio-id', params: { id: post.id } }">
+            <div
+              class="card-project"
+              :style="`background: linear-gradient(-10deg, rgba(206,18,18,0.2) 0%,rgba(0,0,0,0.95) 100%), url(${post.acf.image_principale_du_projet.url});`"
+            >
+              <span class="annee-projet">{{ post.acf.annee_du_projet }}</span>
+              <br />
+              <span class="categorie-projet">{{
+                post.acf.categorie_du_projet
+              }}</span>
+              <h1>{{ post.acf.titre_du_projet }}</h1>
+            </div>
+          </nuxt-link>
+        </div>
+      </div>
     </div>
+
+    <!-- Fin du contenu -->
   </div>
 </template>
 <script>
@@ -415,7 +432,7 @@ export default {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin: 20px;
+    margin: 2%;
 
     @media screen and(max-width:700px) {
       flex-direction: column-reverse;
@@ -805,5 +822,229 @@ export default {
 }
 
 .projets-section {
+  display: flex;
+  flex-direction: column;
+
+  .projets-section-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    @media screen and (max-width: 1140px) {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h4 {
+      align-self: left;
+      font-family: $font-titre;
+      font-weight: 800;
+      color: $couleur-secondaire;
+      font-size: 60px;
+      margin-top: 60px;
+      padding: 3% 3% 1% 3%;
+
+      &:before {
+        content: "";
+        width: 30%;
+        height: 5px;
+        background: linear-gradient(
+          90deg,
+          $couleur-secondaire 50%,
+          $couleur-tertiaire 50%
+        );
+        position: absolute;
+        margin-top: -15px;
+      }
+
+      span {
+        color: $couleur-tertiaire;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      align-self: flex-end;
+      color: $couleur-secondaire;
+      padding: $pad $extra;
+      display: inline-block;
+      border: $thick solid transparent;
+      position: relative;
+      font-size: 1.6em;
+      font-weight: 700;
+      cursor: pointer;
+      margin: 0 7% 15px 0px;
+
+      @media screen and (max-width: 1140px) {
+        align-self: center;
+        margin: 5%;
+      }
+
+      .text {
+        font-family: $font-paragraphe;
+        transform: translate3d(0, $pad, 0);
+        display: block;
+        transition: transform 0.4s cubic-bezier(0.2, 0, 0, 1) 0.4s;
+      }
+
+      &:after {
+        position: absolute;
+        content: "";
+        bottom: -8px;
+        left: $extra;
+        right: $extra;
+        height: $thick;
+        background: $couleur-tertiaire;
+        transition: transform 0.8s cubic-bezier(1, 0, 0.37, 1) 0.2s,
+          right 0.2s cubic-bezier(0.04, 0.48, 0, 1) 0.6s,
+          left 0.4s cubic-bezier(0.04, 0.48, 0, 1) 0.6s;
+        transform-origin: left;
+      }
+    }
+
+    a:hover,
+    a:active {
+      .text {
+        transform: translate3d(0, 0, 0);
+        transition: transform 0.6s cubic-bezier(0.2, 0, 0, 1) 0.4s;
+      }
+
+      &:after {
+        transform: scale3d(0, 1, 1);
+        right: -$thick;
+        left: -$thick;
+        transform-origin: right;
+        transition: transform 0.2s cubic-bezier(1, 0, 0.65, 1.01) 0.17s,
+          right 0.2s cubic-bezier(1, 0, 0.65, 1.01), left 0s 0.3s;
+      }
+
+      .line {
+        transform: scale3d(1, 1, 1);
+
+        &.-right {
+          transition: transform 0.1s cubic-bezier(1, 0, 0.65, 1.01) 0.2s;
+          transform-origin: bottom;
+        }
+
+        &.-top {
+          transition: transform 0.08s linear 0.4s;
+          transform-origin: right;
+        }
+
+        &.-left {
+          transition: transform 0.08s linear 0.48s;
+          transform-origin: top;
+        }
+
+        &.-bottom {
+          transition: transform 0.5s cubic-bezier(0, 0.53, 0.29, 1) 0.56s;
+          transform-origin: left;
+        }
+      }
+    }
+
+    .line {
+      position: absolute;
+      background: $couleur-tertiaire;
+
+      &.-right,
+      &.-left {
+        width: $thick;
+        bottom: -8px;
+        top: -$thick;
+        transform: scale3d(1, 0, 1);
+      }
+
+      &.-top,
+      &.-bottom {
+        height: $thick;
+        left: -$thick;
+        right: -$thick;
+        transform: scale3d(0, 1, 1);
+      }
+
+      &.-right {
+        right: -$thick;
+        transition: transform 0.1s cubic-bezier(1, 0, 0.65, 1.01) 0.23s;
+        transform-origin: top;
+      }
+
+      &.-top {
+        top: -$thick;
+        transition: transform 0.08s linear 0.43s;
+        transform-origin: left;
+      }
+
+      &.-left {
+        left: -$thick;
+        transition: transform 0.08s linear 0.51s;
+        transform-origin: bottom;
+      }
+
+      &.-bottom {
+        bottom: -8px;
+        transition: transform 0.3s cubic-bezier(1, 0, 0.65, 1.01);
+        transform-origin: right;
+      }
+    }
+  }
+
+  .projets-main {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 2%;
+    flex-wrap: wrap;
+
+    &:hover .card-project {
+      filter: saturate(0);
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .card-project {
+      background-size: cover !important;
+      background-position: center !important;
+      border-radius: 15px;
+      transform-origin: center;
+      transition: filter 0.2s linear, transform 0.2s linear;
+      padding: 10%;
+      margin: 2%;
+      height: 400px;
+      width: 350px;
+
+      @media screen and (max-width: 1140px) {
+        width: 85vw;
+      }
+
+      .annee-projet {
+        font-family: $font-paragraphe;
+        font-weight: 300;
+        color: $couleur-principale;
+        font-size: 16px;
+      }
+
+      .categorie-projet {
+        font-family: $font-paragraphe;
+        font-weight: 500;
+        color: $couleur-principale;
+        font-size: 18px;
+      }
+
+      h1 {
+        padding-top: 15px;
+        font-family: $font-paragraphe;
+        font-weight: 600;
+        color: $couleur-principale;
+        font-size: 30px;
+      }
+
+      &:hover {
+        transform: scale(1.05);
+        filter: saturate(1);
+      }
+    }
+  }
 }
 </style>
