@@ -56,7 +56,7 @@
             <b>développer au maximum mes compétences</b> dans ces domaines afin
             de mener au mieux mes différents projets.
           </p>
-          <nuxt-link class="link" to="/">Découvrir mes projets</nuxt-link>
+          <nuxt-link class="link" to="/portfolio-all">Découvrir mes projets</nuxt-link>
         </div>
       </div>
     </div>
@@ -199,7 +199,7 @@
     <div class="projets-section">
       <div class="projets-section-title">
         <h4>Mes derniers <span>projets</span></h4>
-        <nuxt-link to="/portfolio-main">
+        <nuxt-link to="/portfolio-all">
           <span class="text">Voir tous mes projets</span>
           <span class="line -right"></span>
           <span class="line -top"></span>
@@ -208,7 +208,7 @@
         </nuxt-link>
       </div>
       <div class="projets-main" v-if="posts">
-        <div v-for="post in posts" :key="post.acf.titre_du_projet">
+        <div v-for="post in posts" :key="post.id">
           <nuxt-link :to="{ name: 'portfolio-id', params: { id: post.id } }">
             <div
               class="card-project"
@@ -824,6 +824,9 @@ export default {
 .projets-section {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-self: center;
 
   .projets-section-title {
     display: flex;
@@ -841,8 +844,12 @@ export default {
       font-weight: 800;
       color: $couleur-secondaire;
       font-size: 60px;
-      margin-top: 60px;
+      margin: 60px 0 0 80px;
       padding: 3% 3% 1% 3%;
+
+        @media screen and (max-width: 1140px) {
+     margin: 60px 0 0 0;
+    }
 
       &:before {
         content: "";
@@ -991,9 +998,11 @@ export default {
 
   .projets-main {
     display: flex;
-    justify-content: space-evenly;
     padding: 2%;
     flex-wrap: wrap;
+    width: 95%;
+    align-self: center;
+    justify-content: center;
 
     &:hover .card-project {
       filter: saturate(0);
@@ -1010,9 +1019,9 @@ export default {
       transform-origin: center;
       transition: filter 0.2s linear, transform 0.2s linear;
       padding: 10%;
-      margin: 2%;
-      height: 400px;
-      width: 350px;
+      margin: 30px;
+      height: 40vh;
+      width: auto;
 
       @media screen and (max-width: 1140px) {
         width: 85vw;

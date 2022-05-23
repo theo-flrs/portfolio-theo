@@ -29,7 +29,7 @@
               <nuxt-link to="/">Accueil</nuxt-link>
             </li>
             <li @click="FermerMenu()">
-              <nuxt-link to="/">Portfolio</nuxt-link>
+              <nuxt-link to="/portfolio-all">Portfolio</nuxt-link>
             </li>
             <li @click="FermerMenu()">
               <nuxt-link to="/">Contact</nuxt-link>
