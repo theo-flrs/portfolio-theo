@@ -32,16 +32,16 @@
               <nuxt-link to="/portfolio-all">Portfolio</nuxt-link>
             </li>
             <li @click="FermerMenu()">
-              <nuxt-link to="/">Contact</nuxt-link>
+              <nuxt-link to="/contact">Contact</nuxt-link>
             </li>
           </ul>
         </nav>
 
         <div class="header-nav-footer">
           <ul class="social-links">
-            <li><a href="#">Télécharger mon CV -</a></li>
-            <li><a href="#">Instagram -</a></li>
-            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#" target="_blank">Télécharger mon CV -</a></li>
+            <!-- <li><a href="#" target="_blank">Instagram -</a></li> -->
+            <li><a href="#" target="_blank">LinkedIn</a></li>
             <li>&copy;2022</li>
           </ul>
         </div>

@@ -56,7 +56,9 @@
             <b>développer au maximum mes compétences</b> dans ces domaines afin
             de mener au mieux mes différents projets.
           </p>
-          <nuxt-link class="link" to="/portfolio-all">Découvrir mes projets</nuxt-link>
+          <nuxt-link class="link" to="/portfolio-all"
+            >Découvrir mes projets</nuxt-link
+          >
         </div>
       </div>
     </div>
@@ -208,7 +210,7 @@
         </nuxt-link>
       </div>
       <div class="projets-main" v-if="posts">
-        <div v-for="post in posts" :key="post.id">
+        <div v-for="post in posts.slice(0, 3)" :key="post.id">
           <nuxt-link :to="{ name: 'portfolio-id', params: { id: post.id } }">
             <div
               class="card-project"
@@ -847,9 +849,9 @@ export default {
       margin: 60px 0 0 80px;
       padding: 3% 3% 1% 3%;
 
-        @media screen and (max-width: 1140px) {
-     margin: 60px 0 0 0;
-    }
+      @media screen and (max-width: 1140px) {
+        margin: 60px 0 0 0;
+      }
 
       &:before {
         content: "";

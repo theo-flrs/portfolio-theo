@@ -17,6 +17,27 @@ export default {
 <style lang="scss">
 @import "~assets/scss/variables";
 
+// TRANSITIONS NUXT JS
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.6s ease-in-out;
+}
+
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(50vh);
+}
+// TRANSITIONS NUXT JS
+
+.loading-screen {
+  position: relative;
+  padding: 0;
+  background-color: red;
+  width: 0%;
+  height: 100%;
+}
+
 .color-white {
   .hamburger {
     path {
