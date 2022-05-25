@@ -23,6 +23,12 @@
         >
         <span
           class="filter"
+          v-bind:class="{ active: currentFilter === 'Maquettage' }"
+          v-on:click="setFilter('Maquettage')"
+          >Maquettage</span
+        >
+        <span
+          class="filter"
           v-bind:class="{ active: currentFilter === 'Motion Design' }"
           v-on:click="setFilter('Motion Design')"
           >Motion Design</span
@@ -76,6 +82,20 @@
 import axios from "axios";
 
 export default {
+  head() {
+    return {
+      title: "Théo Florès - Tous mes projets",
+      meta: [
+        {
+          hid: "description",
+          id: "description",
+          name: "description",
+          content: "Retrouvez les différents projets personnels & professionnels de mon portfolio facilement. ",
+        },
+      ],
+    };
+  },
+  components: true,
   data() {
     return {
       currentFilter: "Tous",
@@ -93,7 +113,9 @@ export default {
   methods: {
     fetchDataPosts() {
       return axios
-        .get("https://backend.theo-flores.fr/wp-json/acf/v3/portfolio")
+        .get(
+          "https://backend.theo-flores.fr/wp-json/acf/v3/portfolio/?per_page=30"
+        )
         .then((response) => {
           this.posts = response.data;
           return;
@@ -177,7 +199,8 @@ export default {
     flex-wrap: wrap;
     justify-content: center;
     align-self: center;
-    width: 90%;
+    // width: 90%;
+    max-width: 100vw;
 
     a {
       text-decoration: none;
@@ -195,12 +218,20 @@ export default {
         display: flex;
         align-items: flex-end;
         margin: 15px;
-        width: auto;
+        width: 25vw;
         height: 45vh;
         background-size: cover !important;
         background-position: center center !important;
         border-radius: 15px;
         transition: all 0.3s ease-in-out;
+
+        // @media screen and (max-width: 1650px) {
+        //   width: 27vw;
+        // }
+
+        @media screen and (max-width: 1150px) {
+          width: 85vw;
+        }
 
         .projet-content {
           display: flex;

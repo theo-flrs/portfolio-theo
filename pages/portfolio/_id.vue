@@ -1,6 +1,9 @@
 <template>
   <div class="main">
     <div class="article-section">
+      <nuxt-link class="return-to" to="/portfolio-all"
+        >↩ Retourner aux projets</nuxt-link
+      >
       <div
         class="article-image-hero"
         :style="`background: linear-gradient(180deg, rgba(206,18,18,0.2) 0%,rgba(0,0,0,0.90) 90%), url(${post.acf.image_principale_du_projet.url});`"
@@ -59,7 +62,7 @@
       <div class="article-gallery">
         <h2>Gallerie d'images du projet</h2>
         <div class="gallery-layout">
-          <a class="img-sup-projet" href="#img-1">
+          <a class="img-sup-projet" href="#img-1" v-if="post.acf.image_supplementaire_du_projet_1.url">
             <img :src="post.acf.image_supplementaire_du_projet_1.url" />
           </a>
           <a href="#_" class="lightbox" id="img-1">
@@ -69,7 +72,7 @@
             </span>
           </a>
 
-          <a class="img-sup-projet" href="#img-2">
+          <a class="img-sup-projet" href="#img-2" v-if="post.acf.image_supplementaire_du_projet_2.url">
             <img :src="post.acf.image_supplementaire_du_projet_2.url" />
           </a>
           <a href="#_" class="lightbox" id="img-2">
@@ -79,7 +82,7 @@
             </span>
           </a>
 
-          <a class="img-sup-projet" href="#img-3">
+          <a class="img-sup-projet" href="#img-3" v-if="post.acf.image_supplementaire_du_projet_3.url">
             <img :src="post.acf.image_supplementaire_du_projet_3.url" />
           </a>
           <a href="#_" class="lightbox" id="img-3">
@@ -89,7 +92,7 @@
             </span>
           </a>
 
-          <a class="img-sup-projet" href="#img-4">
+          <a class="img-sup-projet" href="#img-4" v-if="post.acf.image_supplementaire_du_projet_4.url">
             <img :src="post.acf.image_supplementaire_du_projet_4.url" />
           </a>
           <a href="#_" class="lightbox" id="img-4">
@@ -99,7 +102,7 @@
             </span>
           </a>
 
-          <a class="img-sup-projet" href="#img-5">
+          <a class="img-sup-projet" href="#img-5" v-if="post.acf.image_supplementaire_du_projet_5.url">
             <img :src="post.acf.image_supplementaire_du_projet_5.url" />
           </a>
           <a href="#_" class="lightbox" id="img-5">
@@ -119,7 +122,7 @@ export default {
   components: true,
   head() {
     return {
-      title: "Portfolio - " + this.post.acf.titre_du_projet,
+      title: "Théo Florès | Projet  - " + this.post.acf.titre_du_projet,
       meta: [
         {
           hid: "description",
@@ -157,12 +160,28 @@ export default {
 
 .article-section {
   display: flex;
+  margin-top: 15vh;
   justify-content: center;
   flex-direction: column;
   align-items: center;
 
+  .return-to {
+    font-family: $font-titre;
+    font-size: 25px;
+    font-weight: 400;
+    color: $couleur-principale;
+    background-color: $couleur-secondaire;
+    text-decoration: none;
+    padding: 15px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      transform: translateX(-10px);
+      background-color: $couleur-tertiaire;
+    }
+  }
+
   .article-image-hero {
-    margin-top: 20vh;
     width: $largeurPostDesktop;
     display: flex;
     flex-direction: column;
@@ -177,7 +196,6 @@ export default {
     @media screen and (max-width: 1030px) {
       width: $largeurPostMobile;
       height: 65vh;
-      margin-top: 15vh;
     }
 
     .content-top-image {
@@ -293,6 +311,7 @@ export default {
       font-size: 16px;
       font-weight: 500;
       color: $couleur-secondaire;
+      padding: 15px 0;
     }
   }
 
@@ -329,20 +348,43 @@ export default {
         font-size: 16px;
         font-weight: 500;
         color: $couleur-secondaire;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        padding: 15px 0;
+      }
+
+      li {
+        font-family: $font-paragraphe;
+        font-size: 16px;
+        font-weight: 300;
+        color: $couleur-secondaire;
       }
 
       img {
-        width: $largeurPostDesktop;
-        height: 500px;
-        object-fit: cover;
+        // width: $largeurPostDesktop;
+        // height: 500px;
+        object-fit: contain;
         object-position: center;
-        margin: 2% 0;
-        box-shadow: 12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
-          100px 100px 80px rgba(0, 0, 0, 0.07);
-        border-radius: 15px;
+        // height: 50vh;
+        // box-shadow: 12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+        //   100px 100px 80px rgba(0, 0, 0, 0.07);
+        // border-radius: 15px;
+        margin: 20px;
+        max-width: 65vw;
+        max-height: 60vh;
 
         @media screen and (max-width: 1030px) {
           width: $largeurPostMobile;
+          max-width: 80vw;
+          max-height: 50vh;
+        }
+
+        @media screen and (max-width: 1110px) {
+          margin: 20px 0;
         }
       }
     }
@@ -379,17 +421,24 @@ export default {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
+      justify-content: center;
 
       .img-sup-projet {
         padding: 1%;
         img {
           width: 30vw;
           height: 30vh;
-          border-radius: 15px;
-          object-fit: cover;
+          // border-radius: 15px;
+          object-fit: contain;
+          transition: all 0.2s ease-in-out;
 
-          @media screen and (max-width:1030px){
+          &:hover {
+            opacity: 0.8;
+          }
+
+          @media screen and (max-width: 1030px) {
             width: 43vw;
+            object-fit: cover;
           }
         }
       }

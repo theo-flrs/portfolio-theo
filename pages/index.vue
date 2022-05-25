@@ -210,7 +210,7 @@
         </nuxt-link>
       </div>
       <div class="projets-main" v-if="posts">
-        <div v-for="post in posts.slice(0, 3)" :key="post.id">
+        <div v-for="post in posts.slice(0, 6)" :key="post.id">
           <nuxt-link :to="{ name: 'portfolio-id', params: { id: post.id } }">
             <div
               class="card-project"
@@ -236,6 +236,20 @@ import axios from "axios";
 import * as THREE from "three";
 
 export default {
+  head() {
+    return {
+      title: "Théo Florès - Portfolio",
+      meta: [
+        {
+          hid: "description",
+          id: "description",
+          name: "description",
+          content:
+            "Hello, bienvenue sur mon portfolio ! Je m'appelle Théo Florès. Je suis un jeune étudiant webdesigner en 3ème année, actuellement en alternance... ",
+        },
+      ],
+    };
+  },
   components: true,
   data() {
     return {
@@ -620,6 +634,11 @@ export default {
     background-repeat: no-repeat !important;
     background-position: center center;
     color: $couleur-principale;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
 
     h2,
     .date,
@@ -693,6 +712,11 @@ export default {
     background-repeat: no-repeat !important;
     background-position: center center;
     color: $couleur-principale;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
 
     h2,
     .date,
@@ -1002,7 +1026,7 @@ export default {
     display: flex;
     padding: 2%;
     flex-wrap: wrap;
-    width: 95%;
+    width: 100%;
     align-self: center;
     justify-content: center;
 
@@ -1023,7 +1047,7 @@ export default {
       padding: 10%;
       margin: 30px;
       height: 40vh;
-      width: auto;
+      width: 25vw;
 
       @media screen and (max-width: 1140px) {
         width: 85vw;

@@ -39,9 +39,21 @@
 
         <div class="header-nav-footer">
           <ul class="social-links">
-            <li><a href="#" target="_blank">Télécharger mon CV -</a></li>
+            <li>
+              <a
+                href="https://backend.theo-flores.fr/wp-content/uploads/2022/05/CV_Theo_Flores.pdf"
+                target="_blank"
+                >Télécharger mon CV -</a
+              >
+            </li>
             <!-- <li><a href="#" target="_blank">Instagram -</a></li> -->
-            <li><a href="#" target="_blank">LinkedIn</a></li>
+            <li>
+              <a
+                href="https://www.linkedin.com/in/th%C3%A9o-flor%C3%A8s/"
+                target="_blank"
+                >LinkedIn</a
+              >
+            </li>
             <li>&copy;2022</li>
           </ul>
         </div>
@@ -347,6 +359,12 @@ nav {
   a {
     color: $couleur-tertiaire;
     text-decoration: none;
+    opacity: 0.75;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 }
 

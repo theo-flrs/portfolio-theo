@@ -434,7 +434,22 @@
 </template>
 
 <script>
-export default {};
+export default {
+  head() {
+    return {
+      title: "Théo Florès - Contact",
+      meta: [
+        {
+          hid: "description",
+          id: "description",
+          name: "description",
+          content:
+            "Hello ! Moi c'est Théo Florès. Je suis un jeune webdesigner Nantais avec plus de 3 ans d'expérience dans le métier. N'hésitez pas à me contacter pour toute demande de projet web ou print !",
+        },
+      ],
+    };
+  },
+};
 </script>
 
 <style lang="scss">
@@ -585,7 +600,7 @@ export default {};
       text-decoration: none;
       transition: all 0.3s ease-in-out;
 
-      &:hover{
+      &:hover {
         transform: translateX(15px);
         background-color: $couleur-tertiaire;
       }

@@ -40,8 +40,14 @@ export default {
 
 .color-white {
   .hamburger {
+    opacity: 0.75;
+    transition: all 0.3s ease-in-out;
     path {
       stroke: $couleur-tertiaire !important;
+    }
+
+    &:hover{
+      opacity: 1;
     }
   }
 }
