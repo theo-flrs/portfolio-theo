@@ -30,13 +30,14 @@ export default {
 @import "~assets/scss/variables";
 .competences-section {
   .container {
-    $hoverEasing: cubic-bezier(0.23, 1, 0.32, 1);
-    $returnEasing: cubic-bezier(0.445, 0.05, 0.55, 0.95);
-
     padding: 40px 2vw;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
+    @media screen and (max-width: 500px) {
+      padding: 40px 0;
+    }
 
     .card-wrap {
       margin: 10px;
@@ -55,19 +56,19 @@ export default {
         }
         .card-info,
         .card-info p {
-          transition: 0.6s $hoverEasing;
+          transition: all 0.5s ease-in-out;
         }
         .card-info:after {
-          transition: 5s $hoverEasing;
+          transition: all 0.5s ease-in-out;
           opacity: 1;
           transform: translateY(0);
         }
         .card-bg {
-          transition: 0.6s $hoverEasing, opacity 5s $hoverEasing;
+          transition: all 0.5s ease-in-out;
           opacity: 0.8;
         }
         .card {
-          transition: 0.6s $hoverEasing, box-shadow 2s $hoverEasing;
+          transition:all 0.5s ease-in-out;
           // box-shadow: rgba($couleur-tertiaire, 0.2) 0 0 40px 5px, rgba($couleur-tertiaire, 1) 0 0 0 1px,
           //   rgba(black, 0.66) 0 30px 60px 0, inset #333 0 0 0 5px,
           //   inset $couleur-tertiaire 0 0 0 5px;
@@ -84,7 +85,11 @@ export default {
       overflow: hidden;
       border-radius: 10px;
       // border: 2px solid $couleur-secondaire;
-      transition: 1s $returnEasing;
+      transition: all 0.5s ease-in-out;
+
+      @media screen and (max-width: 500px) {
+        width: 40vw;
+      }
     }
 
     .card-bg {
@@ -97,7 +102,7 @@ export default {
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
-      transition: 1s $returnEasing, opacity 5s 1s $returnEasing;
+      transition: all 0.5s ease-in-out;
       pointer-events: none;
     }
 
@@ -106,7 +111,7 @@ export default {
       position: absolute;
       bottom: 0;
       color: $couleur-secondaire;
-      transition: 0.6s 1.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+      transition: all 0.5s ease-in-out;
 
       * {
         position: relative;
@@ -117,6 +122,10 @@ export default {
         font-family: $font-paragraphe;
         font-size: 22px;
         font-weight: 700;
+
+        @media screen and (max-width: 500px) {
+          font-size: 17px;
+        }
       }
     }
   }

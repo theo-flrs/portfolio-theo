@@ -189,6 +189,10 @@ export default {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
+    @media screen and (max-width: 500px) {
+      font-size: 22px;
+    }
+
     @keyframes move {
       to {
         background-position: 200% center;
@@ -262,8 +266,8 @@ header {
   top: 0;
 
   span {
-    height: 33.334%;
-    width: 100%;
+    height: 33.334vh;
+    width: 100vw;
     background: $couleur-secondaire;
     border-left: 4px solid $couleur-tertiaire;
     display: block;
@@ -289,7 +293,7 @@ nav {
   }
 
   li + li {
-    margin-top: 20px;
+    margin-top: 30px;
   }
 
   li a {
@@ -336,12 +340,16 @@ nav {
   justify-content: space-between;
   padding: 40px 60px;
   color: $couleur-tertiaire;
+
+  @media screen and (max-width: 500px) {
+    bottom: 70px;
+  }
 }
 .social-links {
   list-style-type: none;
   display: flex;
   align-items: center;
-  width: 100%;
+  width: 100vw;
 
   li {
     font-size: 18px;
@@ -365,6 +373,10 @@ nav {
     &:hover {
       opacity: 1;
     }
+
+    @media screen and (max-width: 500px) {
+      font-size: 14px;
+    }
   }
 }
 
@@ -377,7 +389,7 @@ nav {
     padding: 70px 30px;
   }
   nav li a {
-    font-size: 54px;
+    font-size: 45px;
   }
   .social-links li {
     font-size: 16px;

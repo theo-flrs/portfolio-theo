@@ -62,7 +62,11 @@
       <div class="article-gallery">
         <h2>Gallerie d'images du projet</h2>
         <div class="gallery-layout">
-          <a class="img-sup-projet" href="#img-1" v-if="post.acf.image_supplementaire_du_projet_1.url">
+          <a
+            class="img-sup-projet"
+            href="#img-1"
+            v-if="post.acf.image_supplementaire_du_projet_1.url"
+          >
             <img :src="post.acf.image_supplementaire_du_projet_1.url" />
           </a>
           <a href="#_" class="lightbox" id="img-1">
@@ -72,7 +76,11 @@
             </span>
           </a>
 
-          <a class="img-sup-projet" href="#img-2" v-if="post.acf.image_supplementaire_du_projet_2.url">
+          <a
+            class="img-sup-projet"
+            href="#img-2"
+            v-if="post.acf.image_supplementaire_du_projet_2.url"
+          >
             <img :src="post.acf.image_supplementaire_du_projet_2.url" />
           </a>
           <a href="#_" class="lightbox" id="img-2">
@@ -82,7 +90,11 @@
             </span>
           </a>
 
-          <a class="img-sup-projet" href="#img-3" v-if="post.acf.image_supplementaire_du_projet_3.url">
+          <a
+            class="img-sup-projet"
+            href="#img-3"
+            v-if="post.acf.image_supplementaire_du_projet_3.url"
+          >
             <img :src="post.acf.image_supplementaire_du_projet_3.url" />
           </a>
           <a href="#_" class="lightbox" id="img-3">
@@ -92,7 +104,11 @@
             </span>
           </a>
 
-          <a class="img-sup-projet" href="#img-4" v-if="post.acf.image_supplementaire_du_projet_4.url">
+          <a
+            class="img-sup-projet"
+            href="#img-4"
+            v-if="post.acf.image_supplementaire_du_projet_4.url"
+          >
             <img :src="post.acf.image_supplementaire_du_projet_4.url" />
           </a>
           <a href="#_" class="lightbox" id="img-4">
@@ -102,7 +118,11 @@
             </span>
           </a>
 
-          <a class="img-sup-projet" href="#img-5" v-if="post.acf.image_supplementaire_du_projet_5.url">
+          <a
+            class="img-sup-projet"
+            href="#img-5"
+            v-if="post.acf.image_supplementaire_du_projet_5.url"
+          >
             <img :src="post.acf.image_supplementaire_du_projet_5.url" />
           </a>
           <a href="#_" class="lightbox" id="img-5">
@@ -195,7 +215,8 @@ export default {
 
     @media screen and (max-width: 1030px) {
       width: $largeurPostMobile;
-      height: 65vh;
+      height: auto;
+      padding: 10vh 5vw;
     }
 
     .content-top-image {
@@ -231,6 +252,11 @@ export default {
         font-size: 50px;
         font-weight: 500;
         color: $couleur-principale;
+
+        @media screen and (max-width: 500px) {
+          font-size: 35px;
+          padding-bottom: 20px;
+        }
       }
 
       p {

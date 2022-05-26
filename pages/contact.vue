@@ -466,20 +466,23 @@ export default {
   height: 100vh;
   align-items: center;
 
-  @media screen and(max-width:1400px) {
+  @media screen and(max-width:1000px) {
     flex-direction: column-reverse;
     padding-top: 0vh;
-    height: 125vh;
+  }
+
+  @media screen and (max-width: 500px) {
+    margin: 14vh 0 0 0;
   }
 
   .left {
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 40vw;
     padding: 0% 5%;
 
-    @media screen and(max-width:1400px) {
-      width: 60%;
+    @media screen and (max-width: 1000px) {
+      display: none;
     }
 
     h1 {
@@ -563,6 +566,7 @@ export default {
     display: block;
     width: auto;
     padding: 0% 5%;
+    text-align: center;
 
     h1 {
       font-family: $font-titre;
@@ -570,6 +574,10 @@ export default {
       color: $couleur-principale;
       font-weight: 700;
       padding: 20px 20px 20px 0;
+
+      @media screen and (max-width: 500px) {
+        font-size: 35px;
+      }
     }
 
     h2 {
@@ -578,6 +586,11 @@ export default {
       color: $couleur-principale;
       font-weight: 700;
       padding: 20px 20px 0 0;
+
+      @media screen and (max-width: 500px) {
+        font-size: 30px;
+        padding: 40px 0 0 0;
+      }
     }
 
     p {
@@ -585,6 +598,10 @@ export default {
       font-size: 20px;
       color: $couleur-principale;
       font-weight: 400;
+
+      @media screen and (max-width: 500px) {
+        font-size: 18px;
+      }
     }
 
     a {
@@ -599,6 +616,10 @@ export default {
       margin: 20px 20px 20px 0;
       text-decoration: none;
       transition: all 0.3s ease-in-out;
+
+      @media screen and (max-width: 500px) {
+        font-size: 18px;
+      }
 
       &:hover {
         transform: translateX(15px);

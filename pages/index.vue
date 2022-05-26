@@ -351,7 +351,7 @@ export default {
     },
     onWindowResize() {
       this.renderer.setSize(window.innerWidth, window.innerHeight);
-      //shape.scale.set( 2 , 1 , 1 );
+      this.shape.scale.set(1, 1, 1);
       this.camera.aspect = window.innerWidth / window.innerHeight;
       this.camera.updateProjectionMatrix();
     },
@@ -471,6 +471,10 @@ export default {
           width: 70vw;
         }
 
+        @media screen and (max-width: 500px) {
+          height: 30vh;
+        }
+
         &:before,
         &:after {
           position: absolute;
@@ -512,6 +516,10 @@ export default {
       flex-direction: column;
       padding: 5% 10%;
 
+      @media screen and (max-width: 500px) {
+        padding: 5% 6%;
+      }
+
       h1 {
         display: block;
         font-family: $font-titre;
@@ -525,6 +533,10 @@ export default {
         font-size: 20px;
         font-weight: 500;
         margin: 15px 0px;
+
+        @media screen and (max-width: 500px) {
+          font-size: 16px;
+        }
       }
 
       .link {
@@ -538,6 +550,10 @@ export default {
         font-family: $font-paragraphe;
         margin: 15px 0px;
         transition: all 0.3s ease-in-out;
+
+        @media screen and (max-width: 500px) {
+          font-size: 16px;
+        }
 
         &:hover {
           background-color: $couleur-tertiaire;
@@ -578,6 +594,11 @@ export default {
       flex: 0 0 33%;
       padding: 15px 0;
       text-transform: uppercase;
+
+      @media screen and (max-width: 500px) {
+        font-size: 6.5vw;
+        // padding: 15px 0;
+      }
 
       span {
         position: relative;
@@ -623,6 +644,12 @@ export default {
   @media screen and(max-width:900px) {
     flex-direction: column;
   }
+
+  @media screen and (max-width: 500px) {
+    margin: 60px 0;
+    padding: 0;
+  }
+
   .mes-experiences {
     display: flex;
     flex-direction: column;
@@ -635,6 +662,10 @@ export default {
     background-position: center center;
     color: $couleur-principale;
     transition: all 0.3s ease-in-out;
+
+    @media screen and (max-width: 500px) {
+      padding: 10vh 20px;
+    }
 
     &:hover {
       transform: translateY(-5px);
@@ -698,6 +729,11 @@ export default {
     }
   }
 
+  @media screen and (max-width: 500px) {
+    margin: 60px 0;
+    padding: 0;
+  }
+
   @media screen and(max-width:900px) {
     flex-direction: column;
   }
@@ -713,6 +749,10 @@ export default {
     background-position: center center;
     color: $couleur-principale;
     transition: all 0.3s ease-in-out;
+
+    @media screen and (max-width: 500px) {
+      padding: 10vh 20px;
+    }
 
     &:hover {
       transform: translateY(-5px);
@@ -775,7 +815,12 @@ export default {
     background: $couleur-secondaire;
   }
 
+  @media screen and (max-width: 500px) {
+    padding: 0;
+  }
+
   .competences-title {
+    
     h1 {
       color: $couleur-principale;
       font-family: $font-paragraphe;
@@ -790,12 +835,18 @@ export default {
       );
 
       @media screen and(max-width:700px) {
-        background: $couleur-quaternaire;
+        background: transparent;
+        color: $couleur-tertiaire;
+        font-size: 45px;
       }
 
       span {
         font-family: $font-titre;
         font-weight: 600;
+
+        @media screen and(max-width:700px) {
+          color: $couleur-principale;
+        }
       }
     }
   }
@@ -877,6 +928,10 @@ export default {
         margin: 60px 0 0 0;
       }
 
+      @media screen and (max-width: 500px) {
+        font-size: 45px;
+      }
+
       &:before {
         content: "";
         width: 30%;
@@ -888,6 +943,10 @@ export default {
         );
         position: absolute;
         margin-top: -15px;
+
+        @media screen and (max-width: 500px) {
+          width: 70vw;
+        }
       }
 
       span {
@@ -918,6 +977,11 @@ export default {
         transform: translate3d(0, $pad, 0);
         display: block;
         transition: transform 0.4s cubic-bezier(0.2, 0, 0, 1) 0.4s;
+
+        @media screen and (max-width: 500px) {
+          text-align: center;
+          font-size: 22px;
+        }
       }
 
       &:after {
@@ -1051,6 +1115,10 @@ export default {
 
       @media screen and (max-width: 1140px) {
         width: 85vw;
+      }
+
+      @media screen and (max-width: 500px) {
+        margin: 10px 15px;
       }
 
       .annee-projet {

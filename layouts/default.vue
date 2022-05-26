@@ -46,7 +46,7 @@ export default {
       stroke: $couleur-tertiaire !important;
     }
 
-    &:hover{
+    &:hover {
       opacity: 1;
     }
   }
@@ -65,6 +65,10 @@ html {
 body {
   background-color: $couleur-blanc;
   padding: 10px;
+
+  @media screen and (max-width: 500px) {
+    padding: 5px;
+  }
 }
 
 .main {

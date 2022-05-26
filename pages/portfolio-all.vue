@@ -90,7 +90,8 @@ export default {
           hid: "description",
           id: "description",
           name: "description",
-          content: "Retrouvez les différents projets personnels & professionnels de mon portfolio facilement. ",
+          content:
+            "Retrouvez les différents projets personnels & professionnels de mon portfolio facilement. ",
         },
       ],
     };
@@ -258,6 +259,10 @@ export default {
             font-weight: 500;
             color: $couleur-principale;
             margin: 10px 0;
+
+            @media screen and (max-width: 500px) {
+              font-size: 25px;
+            }
           }
 
           // p {
