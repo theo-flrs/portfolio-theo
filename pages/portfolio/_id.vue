@@ -60,7 +60,7 @@
       </div>
 
       <div class="article-gallery">
-        <h2>Gallerie d'images du projet</h2>
+        <h2>Galerie d'images du projet</h2>
         <div class="gallery-layout">
           <a
             class="img-sup-projet"

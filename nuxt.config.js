@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export default {
 
   // Target: https://go.nuxtjs.dev/config-target
@@ -70,4 +72,16 @@ export default {
   build: {
     transpile:["three","gsap","gsap/Draggable"]
   },
+
+  generate: {
+    routes() {
+      return axios.get('https://backend.theo-flores.fr/wp-json/acf/v3/portfolio').then(res => {
+        return res.data.map(portfolio => {
+          return '/portfolio/' + portfolio.id
+        })
+      })
+    }
+  },
+
+
 };
