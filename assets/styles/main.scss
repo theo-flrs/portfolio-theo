@@ -23,6 +23,11 @@ time, mark, audio, video {
 //Newsreader
 @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Sora:wght@100..800&display=swap');
 
+//ALL
+* {
+    box-sizing: border-box;
+}
+
 //HTML
 html {
     font-size: 62.5%;
@@ -31,11 +36,13 @@ html {
 // Body
 body {
     overflow-y: auto;
-    font-family: $font-primary;  
+    font-family: $font-primary;
+    color: $primary-color;  
 }
 
 //Section + Container
 section {
+    display: flex;
     width: 100%;
     padding: clamp(6rem, calc(6rem + ((1vw - 0.39rem)* 1.9048)), 8rem) clamp(2rem, calc(2rem + ((1vw - 0.39rem)* 7.619)), 10rem);
     margin-left: auto;
@@ -61,6 +68,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: $font-secondary;
     font-weight: 300;
     font-style: italic;
+    text-transform: uppercase;
 
     span{
         font-family: $font-primary;
