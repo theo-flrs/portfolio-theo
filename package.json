@@ -10,12 +10,16 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "nuxt": "^3.14.159",
+    "dotenv": "^16.4.5",
     "vue": "latest",
     "vue-router": "latest"
   },
   "devDependencies": {
+    "@nuxt/image": "^1.8.1",
+    "@vitejs/plugin-vue": "^5.2.0",
+    "nuxt": "^3.14.159",
     "sass": "^1.81.0",
-    "sass-loader": "^16.0.3"
+    "sass-loader": "^16.0.3",
+    "vite": "^5.4.11"
   }
 }

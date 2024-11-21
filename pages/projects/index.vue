@@ -1,11 +1,13 @@
 <template>
   <div>
-    <h1>Théo Florès</h1>
+    
   </div>
 </template>
 
 <script lang="ts" setup>
-
+definePageMeta({
+  name: 'projects', // Nom de la route
+});
 </script>
 
 <style>
